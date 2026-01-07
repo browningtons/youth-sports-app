@@ -343,7 +343,7 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
         )}
       </div>
 
-      <Card className="w-full bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl overflow-hidden">
+      <Card className="w-full bg-jazz-purple text-jazz-paper p-6 relative rounded-md overflow-hidden">
         <img
           src={utahLogo}
           alt="Utah Jazz Basketball Icon"
@@ -417,7 +417,7 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
           </div>
         ) : (
           <div className="relative z-10 pl-16">
-            <h2 className="text-3xl font-black mb-2 tracking-tight text-jazz-paper text-center">
+            <h2 className="text-md font-black mb-2 tracking-tight text-jazz-paper text-center">
               {focus.topic}
             </h2>
 
@@ -681,7 +681,7 @@ const Header = ({ team, scrolled }) => (
         : "bg-jazz-paper")
     }
   >
-    <div className={"max-w-3xl mx-auto " + (scrolled ? "pt-2" : "pt-2") + " pb-3"}>
+    <div className={"max-w-md mx-auto " + (scrolled ? "pt-2" : "pt-2") + " pb-3"}>
       {/* Logo spans full header width */}
       <div className="px-4">
         <img
@@ -1101,53 +1101,49 @@ export default function App() {
     <div className="min-h-screen bg-jazz-paper pb-24 font-sans text-jazz-black selection:bg-yellow-200">
       <Header team={teamData} scrolled={scrolled} />
 
-      <main className="max-w-3xl mx-auto px-4 pt-4">
-        {/* Schedule at top */}
-        <ScheduleSection 
-          schedule={schedule} 
-          isCoach={isCoach} 
-          onUpdateResult={handleUpdateResult}
-        />
+      <div className="bg-jazz-muted/10">
 
-        <div className="grid grid-cols-1 gap-6">
-          <StandingsSection standings={STANDINGS_DATA} teamName={teamData.name} />
-          <RosterSection 
-            players={roster} 
+        <main className="max-w-md mx-auto px-4 pt-4">
+          {/* Schedule at top */}
+          <ScheduleSection 
+            schedule={schedule} 
             isCoach={isCoach} 
-            onUpdateRole={handleUpdateRole}
+            onUpdateResult={handleUpdateResult}
           />
-        </div>
 
-        {/* Weekly Focus moved here: Below Roster, Above Admin Tools */}
-{/*        <WeeklyFocus 
-          focus={weeklyFocus} 
-          isCoach={isCoach} 
-          onSave={setWeeklyFocus}
-        />*/}
+          <div className="grid grid-cols-1 gap-6">
+            <StandingsSection standings={STANDINGS_DATA} teamName={teamData.name} />
+            <RosterSection 
+              players={roster} 
+              isCoach={isCoach} 
+              onUpdateRole={handleUpdateRole}
+            />
+          </div>
 
-        <AdminTools isCoach={isCoach} onImportSchedule={handleScheduleImport} />
+          <AdminTools isCoach={isCoach} onImportSchedule={handleScheduleImport} />
 
-        <div className="mt-8 mb-8 text-center px-8">
-          <p className="text-jazz-muted/80 text-xs leading-relaxed italic">
-            "We build confidence through preparation and sportsmanship. The scoreboard is secondary to our growth."
-          </p>
-        </div>
-      </main>
+          <div className="mt-8 mb-8 text-center px-8">
+            <p className="text-jazz-muted/80 text-xs leading-relaxed italic">
+              "We build confidence through preparation and sportsmanship. The scoreboard is secondary to our growth."
+            </p>
+          </div>
+        </main>
 
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-jazz-black/90 backdrop-blur-md text-jazz-paper p-1.5 rounded-full shadow-2xl flex items-center space-x-1 border border-jazz-black/25/50">
-          <button 
-            onClick={() => setIsCoach(false)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${!isCoach ? 'bg-jazz-paper text-jazz-black shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
-          >
-            Parent
-          </button>
-          <button 
-            onClick={() => setIsCoach(true)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${isCoach ? 'bg-jazz-purple-600 text-jazz-paper shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
-          >
-            Coach
-          </button>
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="bg-jazz-black/90 backdrop-blur-md text-jazz-paper p-1.5 rounded-full shadow-2xl flex items-center space-x-1 border border-jazz-black/25/50">
+            <button 
+              onClick={() => setIsCoach(false)}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${!isCoach ? 'bg-jazz-paper text-jazz-black shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
+            >
+              Parent
+            </button>
+            <button 
+              onClick={() => setIsCoach(true)}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${isCoach ? 'bg-jazz-purple-600 text-jazz-paper shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
+            >
+              Coach
+            </button>
+          </div>
         </div>
       </div>
     </div>
