@@ -459,7 +459,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   }
 
   return (
-    <div className="mb-8 -mx-4 md:mx-0">
+    <div className="mb-6 -mx-4 md:mx-0">
       <div className="flex justify-between items-center px-4 md:px-1 mb-2">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">Schedule</h3>
       </div>
@@ -544,7 +544,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
                 )}
               </div>
 
-              <div className="flex items-center space-x-4 border-t border-jazz-muted/10 pt-3">
+              <div className="flex items-center space-x-2 border-t border-jazz-muted/10 pt-3">
                 <div className="flex items-center text-jazz-black/70 text-sm">
                   <Calendar size={14} className="mr-2 text-jazz-purple" />
                   <span className="font-medium">{game.date}</span>
@@ -587,7 +587,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-6">
       <div className="flex justify-between items-center px-1 mb-3">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">Roster ({players.length})</h3>
         {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
@@ -638,7 +638,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
 };
 
 const StandingsSection = ({ standings, teamName }) => (
-  <div className="mb-8">
+  <div className="mb-6">
     <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">Standings</h3>
     <Card className="overflow-hidden">
       <table className="w-full text-sm text-left">
@@ -995,7 +995,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
   };
 
   return (
-    <div className="mb-12 border-t border-jazz-muted/25 pt-8 mt-8">
+    <div className="mb-6 border-t border-jazz-muted/25 pt-8 mt-8">
       <div className="flex items-start justify-between mb-4 px-1">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">
           <Shield size={14} /> Team Admin
