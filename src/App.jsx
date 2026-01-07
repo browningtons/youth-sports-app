@@ -452,7 +452,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
             <Card key={game.id} className="relative">
               <div className="p-4">
                 <div className="flex justify-between items-center mb-3">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-left">
                     <Badge type={game.isHome ? 'home' : 'away'}>
                       {game.isHome ? 'Home' : 'Away'}
                     </Badge>
@@ -473,29 +473,29 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
                   )}
                 </div>
                 
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold text-sm shrink-0">
-                      VS
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400 font-semibold">Opponent</p>
-                      <p className="text-lg font-bold text-slate-800 leading-none">{game.opponent}</p>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start gap-3">
+                    <div className="flex flex-col items-start text-left">
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide">
+                        Opponent
+                      </p>
+                      <p className="text-lg font-bold text-slate-800 leading-none">
+                        {game.opponent}
+                      </p>
                     </div>
                   </div>
-                  
                   {/* Coach Action Buttons */}
                   {isCoach && !game.result && (
                     <div className="flex gap-2">
                       <button 
                         onClick={() => onUpdateResult(game.id, 'W')}
-                        className="w-8 h-8 rounded-full border border-green-200 bg-green-50 text-green-700 font-bold text-xs hover:bg-green-100 flex items-center justify-center"
+                        className="w-8 h-8 rounded-full border border-green-200 bg-green-50 text-green-700 font-bold text-xs hover:bg-green-100 flex items-start justify-center"
                       >
                         W
                       </button>
                       <button 
                         onClick={() => onUpdateResult(game.id, 'L')}
-                        className="w-8 h-8 rounded-full border border-red-200 bg-red-50 text-red-700 font-bold text-xs hover:bg-red-100 flex items-center justify-center"
+                        className="w-8 h-8 rounded-full border border-red-200 bg-red-50 text-red-700 font-bold text-xs hover:bg-red-100 flex items-start justify-center"
                       >
                         L
                       </button>
@@ -657,7 +657,7 @@ const Header = ({ team, scrolled }) => (
         </p>
         <h1
           className={`font-black text-slate-800 leading-tight transition-all ${
-            scrolled ? "text-lg" : "text-xl"
+            scrolled ? "text-2xl" : "text-3xl"
           }`}
         >
           {team.name}
@@ -674,7 +674,7 @@ const Header = ({ team, scrolled }) => (
         </span>
       </div>
     </div>
-  </div>
+  </div>ScheduleSection
   </header>
 );
 
@@ -958,7 +958,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
 
   return (
     <div className="mb-12 border-t border-slate-200 pt-8 mt-8">
-      <div className="flex items-center justify-between mb-4 px-1">
+      <div className="flex items-start justify-between mb-4 px-1">
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
           <Shield size={14} /> Team Admin
         </h3>
@@ -1001,7 +1001,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
   );
 };
 
-export default function TeamDashboard() {
+export default function App() {
   const [isCoach, setIsCoach] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [weeklyFocus, setWeeklyFocus] = useState(INITIAL_FOCUS);
