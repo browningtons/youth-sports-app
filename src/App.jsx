@@ -332,7 +332,7 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
   };
 
   return (
-    <div className="mb-6 relative group">
+    <div className="relative z-10 pl-16">
       <div className="flex items-center justify-between mb-2 px-1">
         <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">This Week's Focus</h3>
         {isCoach && !isEditing && (
@@ -344,12 +344,13 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
           </button>
         )}
       </div>
+      <Card className="bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl overflow-hidden">
+
       <img
         src={utahLogo}
         alt="Utah Jazz Basketball Icon"
-        className="absolute top-1/2 right-6 -translate-y-1/2 w-24 h-24 opacity-10 pointer-events-none"
+        className="absolute top-1/2 left-6 -translate-y-1/2 w-24 h-24 opacity-10 pointer-events-none"
       />
-      <Card className="bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl">
 
         {isEditing ? (
           <div className="space-y-4 relative z-10">
@@ -401,7 +402,9 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
           </div>
         ) : (
           <div className="relative z-10">
-            <h2 className="text-2xl font-bold mb-2 tracking-tight text-jazz-paper">{focus.topic}</h2>
+            <h2 className="text-2xl font-bold mb-2 tracking-tight text-jazz-paper">
+              {focus.topic}
+            </h2>
             <div className="w-12 h-1 bg-yellow-400 rounded-full mb-3"></div>
             <p className="text-jazz-paper/90 font-medium italic opacity-90 text-lg">
               {focus.quote}
