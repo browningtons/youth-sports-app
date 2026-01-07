@@ -1,30 +1,18 @@
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import logo from "./assets/jazz-logo.png";
 
-export default function App() {
-  return (
-    <div style={{ minHeight: "100vh", display: "grid", placeItems: "center" }}>
-      <img
-        src={logo}
-        alt="Youth Sports App logo"
-        style={{ width: 360, maxWidth: "90%", height: "auto" }}
-      />
-    </div>
-  );
-}
-
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Calendar, 
-  MapPin, 
-  Trophy, 
-  Users, 
-  Shield, 
-  Zap, 
-  Heart, 
-  Edit2, 
-  Check, 
-  X, 
+import {
+  Calendar,
+  MapPin,
+  Trophy,
+  Users,
+  Shield,
+  Zap,
+  Heart,
+  Edit2,
+  Check,
+  X,
   ChevronRight,
   Menu,
   UserCircle,
@@ -38,8 +26,8 @@ import {
   Target,
   Crown,
   Activity,
-  BookOpen
-} from 'lucide-react';
+  BookOpen,
+} from "lucide-react";
 
 /**
  * CONFIG & LIBRARIES
@@ -655,8 +643,15 @@ const Header = ({ team, scrolled }) => (
   <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-slate-50 py-4'}`}>
     <div className="max-w-md mx-auto px-4 flex items-center justify-between">
       <div className="flex items-center space-x-3">
-        <div className={`transition-all duration-300 rounded-full bg-purple-700 flex items-center justify-center text-white font-bold shadow-sm ${scrolled ? 'w-8 h-8 text-xs' : 'w-12 h-12 text-lg'}`}>
-          H
+        <div
+          className={`transition-all duration-300 rounded-full bg-white flex items-center justify-center shadow-sm border border-slate-200 ${
+            scrolled ? "w-9 h-9" : "w-14 h-14"
+          }`}>
+          <img
+            src={logo}
+            alt={`${team.name} logo`}
+            className="w-full h-full object-contain p-1"
+          />
         </div>
         <div>
           <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">{team.league}</p>
