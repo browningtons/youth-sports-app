@@ -1043,7 +1043,6 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
       )}
     </div>
   );
-};
 
 export default function App() {
   const [isCoach, setIsCoach] = useState(false);
