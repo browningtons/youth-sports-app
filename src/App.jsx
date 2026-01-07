@@ -601,7 +601,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
                 {player.number}
               </div>
               <div>
-                <p className="font-bold text-jazz-black text-sm leading-tight">{player.name}</p>
+                <p className="font-bold text-jazz-black text-xl leading-tight">{player.name}</p>
               </div>
             </div>
             
