@@ -645,8 +645,9 @@ const Header = ({ team, scrolled }) => (
       <div className="flex items-center space-x-3">
         <div
           className={`transition-all duration-300 rounded-full bg-white flex items-center justify-center shadow-md border border-slate-200 ${
-            scrolled ? "w-14 h-14" : "w-20 h-20"
-          }`}>
+            scrolled ? "w-12 h-12" : "w-16 h-16"
+          }`}
+        >
           <img
             src={logo}
             alt={`${team.name} logo`}
