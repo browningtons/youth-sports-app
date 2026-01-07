@@ -1123,11 +1123,11 @@ export default function App() {
         </div>
 
         {/* Weekly Focus moved here: Below Roster, Above Admin Tools */}
-        <WeeklyFocus 
+{/*        <WeeklyFocus 
           focus={weeklyFocus} 
           isCoach={isCoach} 
           onSave={setWeeklyFocus}
-        />
+        />*/}
 
         <AdminTools isCoach={isCoach} onImportSchedule={handleScheduleImport} />
 
