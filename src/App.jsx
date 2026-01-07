@@ -459,11 +459,12 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   }
 
   return (
-    <div className="mb-6 -mx-4 md:mx-0">
-      <div className="flex justify-between items-center px-4 md:px-1 mb-2">
-        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">Schedule</h3>
+    <div className="mt-8 -mx-4 md:mx-0">
+      <div className="flex justify-between items-center px-4 md:px-1 mb-4">
+        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">
+          Schedule
+        </h3>
       </div>
-
       <div className="flex flex-col gap-3 px-4 md:px-0">
         {schedule.map((game) => (
           <Card key={game.id} className="relative">
