@@ -331,95 +331,122 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
     setTempNote(data.note);
   };
 
-  return (
-    <div className="relative z-10 pl-16">
-      <div className="flex items-center justify-between mb-2 px-1">
-        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">This Week's Focus</h3>
-        {isCoach && !isEditing && (
-          <button 
-            onClick={() => setIsEditing(true)} 
-            className="text-yellow-600 text-xs font-semibold flex items-center hover:bg-yellow-50 px-2 py-1 rounded-full transition-colors"
-          >
-            <Edit2 size={12} className="mr-1" /> Edit
-          </button>
-        )}
-      </div>
-      <Card className="bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl overflow-hidden">
+return (
+  <div className="mb-6">
+    <div className="flex items-center justify-between mb-2 px-1">
+      <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">
+        This Week's Focus
+      </h3>
 
+      {isCoach && !isEditing && (
+        <button
+          onClick={() => setIsEditing(true)}
+          className="text-yellow-600 text-xs font-semibold flex items-center hover:bg-yellow-50 px-2 py-1 rounded-full transition-colors"
+        >
+          <Edit2 size={12} className="mr-1" /> Edit
+        </button>
+      )}
+    </div>
+
+    <Card className="w-full bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl overflow-hidden">
+      {/* Watermark: subtle, left, behind everything */}
       <img
         src={utahLogo}
         alt="Utah Jazz Basketball Icon"
-        className="absolute top-1/2 left-6 -translate-y-1/2 w-24 h-24 opacity-10 pointer-events-none"
+        className="absolute left-6 top-1/2 -translate-y-1/2 w-28 h-28 opacity-[0.06] pointer-events-none select-none"
       />
 
-        {isEditing ? (
-          <div className="space-y-4 relative z-10">
-            <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/20 mb-4">
-              <label className="text-[10px] text-jazz-paper/80 block mb-1 uppercase font-bold flex items-center gap-1">
-                <BookOpen size={10} /> Load from Curriculum
-              </label>
-              <select 
-                onChange={(e) => loadFromLibrary(e.target.value)}
-                className="w-full bg-jazz-paper/20 border-none rounded text-xs text-jazz-paper p-2 focus:ring-1 focus:ring-yellow-400"
-                defaultValue=""
-              >
-                <option value="" disabled>Select a week to auto-fill...</option>
-                {FOCUS_LIBRARY.map((item, idx) => (
-                  <option key={item.week} value={idx}>Week {item.week}: {item.topic}</option>
-                ))}
-              </select>
-            </div>
+      {isEditing ? (
+        <div className="space-y-4 relative z-10">
+          <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/20 mb-4">
+            <label className="text-[10px] text-jazz-paper/80 block mb-1 uppercase font-bold flex items-center gap-1">
+              <BookOpen size={10} /> Load from Curriculum
+            </label>
+            <select
+              onChange={(e) => loadFromLibrary(e.target.value)}
+              className="w-full bg-jazz-paper/20 border-none rounded text-xs text-jazz-paper p-2 focus:ring-1 focus:ring-yellow-400"
+              defaultValue=""
+            >
+              <option value="" disabled>Select a week to auto-fill...</option>
+              {FOCUS_LIBRARY.map((item, idx) => (
+                <option key={item.week} value={idx}>
+                  Week {item.week}: {item.topic}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            <div>
-              <label className="text-xs text-jazz-paper/80 block mb-1">Technical Focus</label>
-              <input 
-                value={tempTopic}
-                onChange={(e) => setTempTopic(e.target.value)}
-                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
-              />
-            </div>
-            <div>
-              <label className="text-xs text-jazz-paper/80 block mb-1">Mantra / Quote</label>
-              <textarea 
-                value={tempQuote}
-                onChange={(e) => setTempQuote(e.target.value)}
-                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
-                rows={2}
-              />
-            </div>
-            <div>
-              <label className="text-xs text-jazz-paper/80 block mb-1">Coach Note (Private/Small)</label>
-              <input 
-                value={tempNote}
-                onChange={(e) => setTempNote(e.target.value)}
-                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 text-xs"
-              />
-            </div>
-            <div className="flex gap-2 mt-4">
-              <button onClick={handleSave} className="flex-1 bg-yellow-400 text-jazz-purple font-bold py-2 rounded-lg text-sm hover:bg-yellow-300 transition-colors">Save Update</button>
-              <button onClick={() => setIsEditing(false)} className="px-4 bg-transparent border border-jazz-paper/30 text-jazz-paper font-semibold py-2 rounded-lg text-sm hover:bg-jazz-paper/10 transition-colors">Cancel</button>
-            </div>
+          <div>
+            <label className="text-xs text-jazz-paper/80 block mb-1">Technical Focus</label>
+            <input
+              value={tempTopic}
+              onChange={(e) => setTempTopic(e.target.value)}
+              className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
+            />
           </div>
-        ) : (
-          <div className="relative z-10">
-            <h2 className="text-2xl font-bold mb-2 tracking-tight text-jazz-paper">
-              {focus.topic}
-            </h2>
-            <div className="w-12 h-1 bg-yellow-400 rounded-full mb-3"></div>
-            <p className="text-jazz-paper/90 font-medium italic opacity-90 text-lg">
-              {focus.quote}
-            </p>
-            {focus.note && (
-              <p className="mt-4 text-xs text-jazz-paper/70 border-t border-jazz-paper/10 pt-2 flex items-start gap-2">
-                <span className="font-bold uppercase tracking-wider opacity-70">Coach Note:</span> {focus.note}
+
+          <div>
+            <label className="text-xs text-jazz-paper/80 block mb-1">Mantra / Quote</label>
+            <textarea
+              value={tempQuote}
+              onChange={(e) => setTempQuote(e.target.value)}
+              className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
+              rows={2}
+            />
+          </div>
+
+          <div>
+            <label className="text-xs text-jazz-paper/80 block mb-1">Coach Note (Private/Small)</label>
+            <input
+              value={tempNote}
+              onChange={(e) => setTempNote(e.target.value)}
+              className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50 text-xs"
+            />
+          </div>
+
+          <div className="flex gap-2 mt-4">
+            <button
+              onClick={handleSave}
+              className="flex-1 bg-yellow-400 text-jazz-purple font-bold py-2 rounded-lg text-sm hover:bg-yellow-300 transition-colors"
+            >
+              Save Update
+            </button>
+            <button
+              onClick={() => setIsEditing(false)}
+              className="px-4 bg-transparent border border-jazz-paper/30 text-jazz-paper font-semibold py-2 rounded-lg text-sm hover:bg-jazz-paper/10 transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      ) : (
+        // Content: centered, with left padding only inside the card (so header stays aligned)
+        <div className="relative z-10 pl-16">
+          <h2 className="text-3xl font-black mb-2 tracking-tight text-jazz-paper text-center">
+            {focus.topic}
+          </h2>
+
+          <div className="w-14 h-1 bg-yellow-400 rounded-full mb-4 mx-auto" />
+
+          <p className="text-jazz-paper/90 font-semibold italic opacity-90 text-lg text-center">
+            {focus.quote}
+          </p>
+
+          {focus.note && (
+            <div className="mt-5 pt-3 border-t border-jazz-paper/20">
+              <p className="text-xs text-jazz-paper/75 flex items-start gap-2">
+                <span className="font-bold uppercase tracking-wider opacity-80">
+                  Coach Note:
+                </span>
+                <span>{focus.note}</span>
               </p>
-            )}
-          </div>
-        )}
-      </Card>
-    </div>
-  );
-};
+            </div>
+          )}
+        </div>
+      )}
+    </Card>
+  </div>
+);
 
 const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   if (!schedule || schedule.length === 0) {
@@ -660,7 +687,7 @@ const Header = ({ team, scrolled }) => (
         : "bg-jazz-paper")
     }
   >
-    <div className={"max-w-md mx-auto " + (scrolled ? "pt-2" : "pt-2") + " pb-3"}>
+    <div className={"max-w-3xl mx-auto " + (scrolled ? "pt-2" : "pt-2") + " pb-3"}>
       {/* Logo spans full header width */}
       <div className="px-4">
         <img
@@ -1081,7 +1108,7 @@ export default function App() {
     <div className="min-h-screen bg-jazz-paper pb-24 font-sans text-jazz-black selection:bg-yellow-200">
       <Header team={teamData} scrolled={scrolled} />
 
-      <main className="max-w-md mx-auto px-4 pt-4">
+      <main className="max-w-3xl mx-auto px-4 pt-4">
         {/* Schedule at top */}
         <ScheduleSection 
           schedule={schedule} 
