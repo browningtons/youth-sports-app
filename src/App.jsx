@@ -271,7 +271,7 @@ const parseCSV = (text) => {
 const Card = ({ children, className = "", onClick }) => (
   <div 
     onClick={onClick}
-    className={`bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden ${className}`}
+    className={`bg-jazz-paper rounded-2xl shadow-sm border border-jazz-muted/20 overflow-hidden ${className}`}
   >
     {children}
   </div>
@@ -280,17 +280,17 @@ const Card = ({ children, className = "", onClick }) => (
 const Badge = ({ children, type = "neutral" }) => {
   const styles = {
     neutral: "bg-jazz-muted/20 text-jazz-black",
-    primary: "bg-jazz-purple text-white",
+    primary: "bg-jazz-purple text-jazz-paper",
     accent: "bg-jazz-sky text-jazz-black",
 
-    home: "bg-jazz-purple text-white",
+    home: "bg-jazz-purple text-jazz-paper",
     away: "bg-jazz-sky text-jazz-black",
 
     win: "bg-jazz-purple/15 text-jazz-purple",
     loss: "bg-jazz-black/10 text-jazz-black",
 
     warning: "bg-jazz-sky/20 text-jazz-black",
-    error: "bg-jazz-black text-white",
+    error: "bg-jazz-black text-jazz-paper",
   };
 
   return (
@@ -333,7 +333,7 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
   return (
     <div className="mb-6 relative group">
       <div className="flex items-center justify-between mb-2 px-1">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">This Week's Focus</h3>
+        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">This Week's Focus</h3>
         {isCoach && !isEditing && (
           <button 
             onClick={() => setIsEditing(true)} 
@@ -344,20 +344,20 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
         )}
       </div>
 
-      <Card className="bg-gradient-to-br from-purple-700 to-indigo-900 text-white p-6 relative">
+      <Card className="bg-gradient-to-br from-jazz-purple to-jazz-black text-jazz-paper p-6 relative">
         <div className="absolute top-0 right-0 p-4 opacity-10">
           <Zap size={80} />
         </div>
 
         {isEditing ? (
           <div className="space-y-4 relative z-10">
-            <div className="bg-white/10 p-3 rounded-lg border border-white/10 mb-4">
-              <label className="text-[10px] text-purple-200 block mb-1 uppercase font-bold flex items-center gap-1">
+            <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/10 mb-4">
+              <label className="text-[10px] text-jazz-paper/80 block mb-1 uppercase font-bold flex items-center gap-1">
                 <BookOpen size={10} /> Load from Curriculum
               </label>
               <select 
                 onChange={(e) => loadFromLibrary(e.target.value)}
-                className="w-full bg-white/20 border-none rounded text-xs text-white p-2 focus:ring-1 focus:ring-yellow-400"
+                className="w-full bg-jazz-paper/20 border-none rounded text-xs text-jazz-paper p-2 focus:ring-1 focus:ring-yellow-400"
                 defaultValue=""
               >
                 <option value="" disabled>Select a week to auto-fill...</option>
@@ -368,44 +368,44 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
             </div>
 
             <div>
-              <label className="text-xs text-purple-200 block mb-1">Technical Focus</label>
+              <label className="text-xs text-jazz-paper/80 block mb-1">Technical Focus</label>
               <input 
                 value={tempTopic}
                 onChange={(e) => setTempTopic(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
+                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
               />
             </div>
             <div>
-              <label className="text-xs text-purple-200 block mb-1">Mantra / Quote</label>
+              <label className="text-xs text-jazz-paper/80 block mb-1">Mantra / Quote</label>
               <textarea 
                 value={tempQuote}
                 onChange={(e) => setTempQuote(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
+                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
                 rows={2}
               />
             </div>
             <div>
-              <label className="text-xs text-purple-200 block mb-1">Coach Note (Private/Small)</label>
+              <label className="text-xs text-jazz-paper/80 block mb-1">Coach Note (Private/Small)</label>
               <input 
                 value={tempNote}
                 onChange={(e) => setTempNote(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 text-xs"
+                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 text-xs"
               />
             </div>
             <div className="flex gap-2 mt-4">
-              <button onClick={handleSave} className="flex-1 bg-yellow-400 text-purple-900 font-bold py-2 rounded-lg text-sm hover:bg-yellow-300 transition-colors">Save Update</button>
-              <button onClick={() => setIsEditing(false)} className="px-4 bg-transparent border border-white/30 text-white font-semibold py-2 rounded-lg text-sm hover:bg-white/10 transition-colors">Cancel</button>
+              <button onClick={handleSave} className="flex-1 bg-yellow-400 text-jazz-purple font-bold py-2 rounded-lg text-sm hover:bg-yellow-300 transition-colors">Save Update</button>
+              <button onClick={() => setIsEditing(false)} className="px-4 bg-transparent border border-jazz-paper/30 text-jazz-paper font-semibold py-2 rounded-lg text-sm hover:bg-jazz-paper/10 transition-colors">Cancel</button>
             </div>
           </div>
         ) : (
           <div className="relative z-10">
-            <h2 className="text-2xl font-bold mb-2 tracking-tight text-white">{focus.topic}</h2>
+            <h2 className="text-2xl font-bold mb-2 tracking-tight text-jazz-paper">{focus.topic}</h2>
             <div className="w-12 h-1 bg-yellow-400 rounded-full mb-3"></div>
-            <p className="text-purple-100 font-medium italic opacity-90 text-lg">
+            <p className="text-jazz-paper/90 font-medium italic opacity-90 text-lg">
               {focus.quote}
             </p>
             {focus.note && (
-              <p className="mt-4 text-xs text-purple-300 border-t border-white/10 pt-2 flex items-start gap-2">
+              <p className="mt-4 text-xs text-jazz-paper/70 border-t border-jazz-paper/10 pt-2 flex items-start gap-2">
                 <span className="font-bold uppercase tracking-wider opacity-70">Coach Note:</span> {focus.note}
               </p>
             )}
@@ -417,29 +417,17 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
 };
 
 const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
-  const getLocationColor = (location) => {
-    const colors = [
-      { text: 'text-white', bg: 'bg-[rgb(62,38,128)]' },   
-      { text: 'text-white', bg: 'bg-[rgb(0,39,93)]' },     
-      { text: 'text-white', bg: 'bg-[rgb(108,174,223)]' }, 
-    ];
-    let hash = 0;
-    for (let i = 0; i < location.length; i++) {
-      hash = location.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const index = Math.abs(hash) % colors.length;
-    return colors[index];
-  };
-
   if (!schedule || schedule.length === 0) {
     return (
       <div className="mb-8">
-         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 px-1">Upcoming</h3>
-         <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200 shadow-none">
-            <Calendar className="mx-auto text-slate-300 mb-3" size={32} />
-            <p className="text-slate-600 font-medium">Schedule coming soon.</p>
-            <p className="text-slate-400 text-sm mt-1">First practice builds champions.</p>
-         </Card>
+        <h3 className="text-sm font-bold text-jazz-muted uppercase tracking-wider mb-2 px-1">
+          Upcoming
+        </h3>
+        <Card className="p-8 text-center bg-jazz-paper border-dashed border-2 border-jazz-muted/30 shadow-none">
+          <Calendar className="mx-auto text-jazz-muted/60 mb-3" size={32} />
+          <p className="text-jazz-black font-medium">Schedule coming soon.</p>
+          <p className="text-jazz-muted text-sm mt-1">First practice builds champions.</p>
+        </Card>
       </div>
     );
   }
@@ -447,102 +435,116 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   return (
     <div className="mb-8 -mx-4 md:mx-0">
       <div className="flex justify-between items-center px-4 md:px-1 mb-2">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Schedule</h3>
+        <h3 className="text-sm font-bold text-jazz-muted uppercase tracking-wider">Schedule</h3>
       </div>
-      
+
       <div className="flex flex-col gap-3 px-4 md:px-0">
-        {schedule.map((game) => {
-          const locColor = getLocationColor(game.location);
-          
-          return (
-            <Card key={game.id} className="relative">
-              <div className="p-4">
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex items-center gap-2 text-left">
-                    <Badge type={game.isHome ? 'home' : 'away'}>
-                      {game.isHome ? 'Home' : 'Away'}
-                    </Badge>
-                    <span className={`text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-md shadow-sm ${locColor.bg} ${locColor.text}`}>
-                      {game.location}
-                    </span>
-                  </div>
-                  
-                  {/* Result or Countdown */}
-                  {game.result ? (
-                    <Badge type={game.result === 'W' ? 'win' : 'loss'}>
-                      {game.result === 'W' ? 'Win' : 'Loss'}
-                    </Badge>
-                  ) : (
-                    <span className={`text-xs font-bold uppercase tracking-wide ${game.daysAway < 0 ? 'text-slate-400' : 'text-slate-500'}`}>
-                      {game.daysAway < 0 ? 'Pending' : game.daysAway === 0 ? 'Today!' : `${game.daysAway} days`}
-                    </span>
-                  )}
-                </div>
-                
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex flex-col items-start text-left">
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide">
-                        Opponent
-                      </p>
-                      <p className="text-lg font-bold text-slate-800 leading-none">
-                        {game.opponent}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Coach Action Buttons */}
-                  {isCoach && !game.result && (
-                    <div className="flex gap-2">
-                      <button 
-                        onClick={() => onUpdateResult(game.id, 'W')}
-                        className="w-8 h-8 rounded-full border border-green-200 bg-green-50 text-green-700 font-bold text-xs hover:bg-green-100 flex items-start justify-center"
-                      >
-                        W
-                      </button>
-                      <button 
-                        onClick={() => onUpdateResult(game.id, 'L')}
-                        className="w-8 h-8 rounded-full border border-red-200 bg-red-50 text-red-700 font-bold text-xs hover:bg-red-100 flex items-start justify-center"
-                      >
-                        L
-                      </button>
-                    </div>
-                  )}
-                  {isCoach && game.result && (
-                     <button 
-                        onClick={() => onUpdateResult(game.id, null)}
-                        className="text-[10px] text-slate-400 underline"
-                      >
-                        Undo
-                      </button>
-                  )}
+        {schedule.map((game) => (
+          <Card key={game.id} className="relative">
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-2 text-left">
+                  {/* Keep Home/Away with color background via Badge styles */}
+                  <Badge type={game.isHome ? "home" : "away"}>
+                    {game.isHome ? "Home" : "Away"}
+                  </Badge>
+
+                  {/* Location: NO color-coding, neutral pill */}
+                  <span className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-md border border-jazz-muted/25 bg-jazz-muted/10 text-jazz-black/80">
+                    {game.location}
+                  </span>
                 </div>
 
-                <div className="flex items-center space-x-4 border-t border-slate-50 pt-3">
-                  <div className="flex items-center text-slate-600 text-sm">
-                    <Calendar size={14} className="mr-2 text-purple-600" />
-                    <span className="font-medium">{game.date}</span>
-                  </div>
-                  <div className="flex items-center text-slate-600 text-sm">
-                    <span className="text-slate-300 mr-2">|</span>
-                    <span className="font-medium">{game.time}</span>
+                {/* Result or Countdown */}
+                {game.result ? (
+                  <Badge type={game.result === "W" ? "win" : "loss"}>
+                    {game.result === "W" ? "Win" : "Loss"}
+                  </Badge>
+                ) : (
+                  <span
+                    className={
+                      "text-xs font-bold uppercase tracking-wide " +
+                      (game.daysAway < 0 ? "text-jazz-muted" : "text-jazz-black/60")
+                    }
+                  >
+                    {game.daysAway < 0
+                      ? "Pending"
+                      : game.daysAway === 0
+                      ? "Today!"
+                      : `${game.daysAway} days`}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex flex-col items-start text-left">
+                    <p className="text-xs text-jazz-muted font-semibold uppercase tracking-wide">
+                      Opponent
+                    </p>
+                    <p className="text-lg font-bold text-jazz-black leading-none">
+                      {game.opponent}
+                    </p>
                   </div>
                 </div>
+
+                {/* Coach Action Buttons */}
+                {isCoach && !game.result && (
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => onUpdateResult(game.id, "W")}
+                      className="w-8 h-8 rounded-full border border-jazz-purple/25 bg-jazz-purple/10 text-jazz-purple font-bold text-xs hover:bg-jazz-purple/15 flex items-center justify-center"
+                      title="Mark Win"
+                    >
+                      W
+                    </button>
+                    <button
+                      onClick={() => onUpdateResult(game.id, "L")}
+                      className="w-8 h-8 rounded-full border border-jazz-black/15 bg-jazz-black/5 text-jazz-black font-bold text-xs hover:bg-jazz-black/10 flex items-center justify-center"
+                      title="Mark Loss"
+                    >
+                      L
+                    </button>
+                  </div>
+                )}
+
+                {isCoach && game.result && (
+                  <button
+                    onClick={() => onUpdateResult(game.id, null)}
+                    className="text-[10px] text-jazz-muted underline"
+                  >
+                    Undo
+                  </button>
+                )}
               </div>
-            </Card>
-          );
-        })}
-        
+
+              <div className="flex items-center space-x-4 border-t border-jazz-muted/10 pt-3">
+                <div className="flex items-center text-jazz-black/70 text-sm">
+                  <Calendar size={14} className="mr-2 text-jazz-purple" />
+                  <span className="font-medium">{game.date}</span>
+                </div>
+                <div className="flex items-center text-jazz-black/70 text-sm">
+                  <span className="text-jazz-muted/60 mr-2">|</span>
+                  <span className="font-medium">{game.time}</span>
+                </div>
+              </div>
+            </div>
+          </Card>
+        ))}
+
         {isCoach && (
-           <div className="mt-2">
-             <button className="w-full py-3 rounded-2xl border-2 border-dashed border-slate-300 text-slate-400 font-bold text-sm hover:text-purple-600 hover:border-purple-300 hover:bg-jazz-purple-50 transition-all flex items-center justify-center">
-                <span className="text-lg mr-2">+</span> Add Game Manually
-             </button>
-           </div>
+          <div className="mt-2">
+            <button className="w-full py-3 rounded-2xl border-2 border-dashed border-jazz-muted/40 text-jazz-muted font-bold text-sm hover:text-jazz-purple hover:border-jazz-purple/40 hover:bg-jazz-purple/5 transition-all flex items-center justify-center">
+              <span className="text-lg mr-2">+</span> Add Game Manually
+            </button>
+          </div>
         )}
       </div>
     </div>
   );
 };
+
+
 
 const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   const getRoleIcon = (role) => {
@@ -561,20 +563,20 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center px-1 mb-3">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Roster ({players.length})</h3>
-        {isCoach && <button className="text-xs font-semibold text-purple-600 hover:text-purple-700">Edit Roster</button>}
+        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">Roster ({players.length})</h3>
+        {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {players.map((player) => (
           <Card key={player.id} className="p-3 flex flex-col justify-between h-full">
             <div className="flex items-center space-x-3 mb-2">
-              <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 font-bold text-sm shrink-0">
+              <div className="w-10 h-10 bg-jazz-paper rounded-full flex items-center justify-center text-jazz-muted font-bold text-sm shrink-0">
                 {player.number}
               </div>
               <div>
-                <p className="font-bold text-slate-800 text-sm leading-tight">{player.name}</p>
-                <p className="text-[10px] text-slate-400">Athlete</p>
+                <p className="font-bold text-jazz-black text-sm leading-tight">{player.name}</p>
+                <p className="text-[10px] text-jazz-muted/80">Athlete</p>
               </div>
             </div>
             
@@ -582,7 +584,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
               <select 
                 value={player.role || ''}
                 onChange={(e) => onUpdateRole(player.id, e.target.value)}
-                className="w-full mt-2 text-xs border border-slate-200 rounded p-1 text-slate-600 focus:outline-none focus:border-purple-300 bg-slate-50"
+                className="w-full mt-2 text-xs border border-jazz-muted/25 rounded p-1 text-jazz-muted focus:outline-none focus:border-jazz-purple/30 bg-jazz-paper"
               >
                 <option value="">Select Role</option>
                 {PLAYER_ROLES.map(role => (
@@ -591,7 +593,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
               </select>
             ) : (
               player.role && (
-                <div className="flex items-center text-xs text-purple-600 font-medium mt-1 bg-jazz-purple-50 self-start px-2 py-0.5 rounded-full">
+                <div className="flex items-center text-xs text-jazz-purple font-medium mt-1 bg-jazz-purple-50 self-start px-2 py-0.5 rounded-full">
                   {getRoleIcon(player.role)}
                   {player.role}
                 </div>
@@ -600,7 +602,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
           </Card>
         ))}
         {isCoach && (
-          <button className="border-2 border-dashed border-slate-200 rounded-2xl flex flex-col items-center justify-center py-4 text-slate-400 hover:bg-slate-50 hover:border-slate-300 transition-colors h-full min-h-[100px]">
+          <button className="border-2 border-dashed border-jazz-muted/25 rounded-2xl flex flex-col items-center justify-center py-4 text-jazz-muted/80 hover:bg-jazz-paper hover:border-jazz-muted/35 transition-colors h-full min-h-[100px]">
             <span className="text-xl mb-1">+</span>
             <span className="text-xs font-medium">Add Kid</span>
           </button>
@@ -612,10 +614,10 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
 
 const StandingsSection = ({ standings, teamName }) => (
   <div className="mb-8">
-    <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 px-1">Standings</h3>
+    <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider mb-2 px-1">Standings</h3>
     <Card className="overflow-hidden">
       <table className="w-full text-sm text-left">
-        <thead className="bg-slate-50 text-slate-400 font-medium">
+        <thead className="bg-jazz-paper text-jazz-muted/80 font-medium">
           <tr>
             <th className="py-3 px-4 w-10">#</th>
             <th className="py-3 px-2">Team</th>
@@ -627,69 +629,67 @@ const StandingsSection = ({ standings, teamName }) => (
             const isMyTeam = teamName.includes(team.name) || teamName.includes(team.name.split(' ')[1]); 
             return (
               <tr key={team.rank} className={isMyTeam ? "bg-jazz-purple-50/50" : ""}>
-                <td className="py-3 px-4 font-medium text-slate-400">{team.rank}</td>
-                <td className={`py-3 px-2 font-bold ${isMyTeam ? 'text-purple-900' : 'text-slate-700'}`}>
+                <td className="py-3 px-4 font-medium text-jazz-muted/80">{team.rank}</td>
+                <td className={`py-3 px-2 font-bold ${isMyTeam ? 'text-jazz-purple' : 'text-jazz-black/80'}`}>
                   {team.name}
                   {isMyTeam && <span className="ml-2 inline-block w-2 h-2 bg-jazz-purple-600 rounded-full"></span>}
                 </td>
-                <td className="py-3 px-4 text-right text-slate-600 tabular-nums">{team.w}-{team.l}</td>
+                <td className="py-3 px-4 text-right text-jazz-muted tabular-nums">{team.w}-{team.l}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <div className="bg-slate-50 p-3 text-center border-t border-slate-100">
-        <p className="text-xs text-slate-400">Regular Season • 2026 co-ed Jr Jazz Basketball</p>
+      <div className="bg-jazz-paper p-3 text-center border-t border-jazz-muted/20">
+        <p className="text-xs text-jazz-muted/80">Regular Season • 2026 co-ed Jr Jazz Basketball</p>
       </div>
     </Card>
   </div>
 );
 
-
 const Header = ({ team, scrolled }) => (
-  <header
-    className={
-      `sticky top-0 z-40 border-b transition-all duration-300 ` +
-      (scrolled
-        ? "bg-jazz-paper/90 backdrop-blur-md border-jazz-purple"
-        : "bg-jazz-paper border-jazz-purple")
-    }
-  >
-    <div className={"max-w-md mx-auto " + (scrolled ? "pt-3" : "pt-4") + " pb-3"}>
-      {/* Logo spans full header width */}
-      <div className="px-4">
-        <img
-          src={logo}
-          alt="Utah Jazz Basketball"
-          className={
-            "w-full object-contain " +
-            (scrolled ? "max-h-[64px]" : "max-h-[84px]")
-          }
-        />
-      </div>
-
-      {/* League name then Coach/Team name */}
-      <div className="mt-3 flex flex-col items-center text-center px-4">
-        <p className="text-[11px] font-bold uppercase tracking-wider text-jazz-muted">
+  <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-jazz-paper/90 backdrop-blur-md shadow-sm py-2' : 'bg-jazz-paper py-4'}`}>
+     <div className="max-w-md mx-auto px-4 flex items-center justify-between">
+    {/* LEFT: logo + text */}
+    <div
+      className={`relative flex items-center justify-center rounded-full bg-jazz-paper
+        shadow-[0_6px_18px_rgba(0,0,0,0.15)]
+        transition-all duration-300
+        ${scrolled ? "w-14 h-14 -translate-y-1" : "w-18 h-18 -translate-y-2"}
+      `}
+    >
+      <img
+        src={logo}
+        alt="Utah Jazz Basketball"
+        className="w-4/5 h-4/5 object-contain"
+      />
+    </div>
+      <div className="flex flex-col items-start">
+        <p className="text-xs font-bold text-jazz-muted/80 uppercase tracking-wide">
           {team.league}
         </p>
         <h1
-          className={
-            "font-black leading-tight text-jazz-purple " +
-            (scrolled ? "text-2xl" : "text-3xl")
-          }
+          className={`font-black text-jazz-black leading-tight transition-all ${
+            scrolled ? "text-2xl" : "text-3xl"
+          }`}
         >
           {team.name}
         </h1>
-        {/* Optional: season / record */}
-        <div className="mt-1 text-xs font-semibold text-jazz-black/70">
-          Record {team.record.w}-{team.record.l}
-        </div>
       </div>
     </div>
+
+    {/* RIGHT: record */}
+    <div className="text-right">
+      <div className="inline-flex flex-col items-end">
+        <span className="text-xs font-bold text-jazz-muted/80 uppercase">Record</span>
+        <span className="font-bold text-jazz-black/80">
+          {team.record.w}-{team.record.l}
+        </span>
+      </div>
+    </div>
+  </div>
   </header>
 );
-
 
 const CSVWizard = ({ onImport, type, onClose }) => {
   const [step, setStep] = useState('upload'); // upload, validating, results, success
@@ -794,20 +794,20 @@ const CSVWizard = ({ onImport, type, onClose }) => {
   };
 
   return (
-    <Card className="p-6 mb-6 border-purple-200 shadow-md">
+    <Card className="p-6 mb-6 border-jazz-purple/25 shadow-md">
       <div className="flex justify-between items-start mb-4">
          <div>
-           <h4 className="font-bold text-slate-800 text-lg">Import {type}</h4>
-           <p className="text-xs text-slate-500">Step {step === 'upload' ? '1' : step === 'validating' ? '2' : '3'} of 3</p>
+           <h4 className="font-bold text-jazz-black text-lg">Import {type}</h4>
+           <p className="text-xs text-jazz-muted">Step {step === 'upload' ? '1' : step === 'validating' ? '2' : '3'} of 3</p>
          </div>
          {step !== 'success' && (
-           <button onClick={onClose} className="text-slate-400 hover:text-slate-600"><X size={20}/></button>
+           <button onClick={onClose} className="text-jazz-muted/80 hover:text-jazz-muted"><X size={20}/></button>
          )}
       </div>
 
       {step === 'upload' && (
         <div 
-          className={`border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer ${dragActive ? 'border-purple-500 bg-jazz-purple-50' : 'border-slate-300 hover:border-purple-400 hover:bg-slate-50'}`}
+          className={`border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer ${dragActive ? 'border-jazz-purple/40 bg-jazz-purple-50' : 'border-jazz-muted/35 hover:border-jazz-purple/35 hover:bg-jazz-paper'}`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
@@ -821,13 +821,13 @@ const CSVWizard = ({ onImport, type, onClose }) => {
             accept=".csv"
             onChange={(e) => handleFile(e.target.files[0])}
           />
-          <div className="w-12 h-12 bg-jazz-purple-100 rounded-full flex items-center justify-center text-purple-600 mx-auto mb-3">
+          <div className="w-12 h-12 bg-jazz-purple-100 rounded-full flex items-center justify-center text-jazz-purple mx-auto mb-3">
             <Upload size={24} />
           </div>
-          <p className="text-sm font-semibold text-slate-700">Click to upload or drag and drop</p>
-          <p className="text-xs text-slate-400 mt-1">.CSV files only (Max 300 rows)</p>
+          <p className="text-sm font-semibold text-jazz-black/80">Click to upload or drag and drop</p>
+          <p className="text-xs text-jazz-muted/80 mt-1">.CSV files only (Max 300 rows)</p>
           <div className="mt-6">
-            <button className="text-xs font-bold text-purple-600 flex items-center justify-center mx-auto hover:underline">
+            <button className="text-xs font-bold text-jazz-purple flex items-center justify-center mx-auto hover:underline">
               <Download size={12} className="mr-1" /> Download Template
             </button>
           </div>
@@ -836,9 +836,9 @@ const CSVWizard = ({ onImport, type, onClose }) => {
 
       {step === 'validating' && (
         <div className="py-12 text-center">
-          <Loader size={32} className="animate-spin text-purple-600 mx-auto mb-4" />
-          <h5 className="font-bold text-slate-700">Checking your file...</h5>
-          <p className="text-xs text-slate-500 mt-1">Looking for typos and format issues.</p>
+          <Loader size={32} className="animate-spin text-jazz-purple mx-auto mb-4" />
+          <h5 className="font-bold text-jazz-black/80">Checking your file...</h5>
+          <p className="text-xs text-jazz-muted mt-1">Looking for typos and format issues.</p>
         </div>
       )}
 
@@ -847,22 +847,22 @@ const CSVWizard = ({ onImport, type, onClose }) => {
           
           {/* TEAM SELECTOR - NEW */}
           {type === 'Schedule' && uniqueTeams.length > 0 && (
-             <div className="mb-6 bg-jazz-purple-50 border border-purple-100 p-4 rounded-xl">
+             <div className="mb-6 bg-jazz-purple-50 border border-jazz-purple/20 p-4 rounded-xl">
                <div className="flex items-start gap-3">
-                 <div className="bg-white p-2 rounded-lg text-purple-600 shadow-sm mt-1">
+                 <div className="bg-jazz-paper p-2 rounded-lg text-jazz-purple shadow-sm mt-1">
                    <Filter size={20} />
                  </div>
                  <div className="flex-1">
-                   <label className="block text-sm font-bold text-purple-900 mb-1">
+                   <label className="block text-sm font-bold text-jazz-purple mb-1">
                      Which team are you coaching?
                    </label>
-                   <p className="text-xs text-purple-700 mb-2">
+                   <p className="text-xs text-jazz-purple mb-2">
                      We found {uniqueTeams.length} teams. Select yours to filter the dashboard.
                    </p>
                    <select 
                      value={selectedTeam}
                      onChange={(e) => setSelectedTeam(e.target.value)}
-                     className="w-full p-2 rounded-lg border border-purple-200 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                     className="w-full p-2 rounded-lg border border-jazz-purple/25 text-sm font-medium text-jazz-black/80 focus:outline-none focus:ring-2 focus:ring-jazz-purple/40"
                    >
                      {uniqueTeams.map(t => (
                        <option key={t} value={t}>{t}</option>
@@ -874,9 +874,9 @@ const CSVWizard = ({ onImport, type, onClose }) => {
           )}
 
           <div className="flex gap-4 mb-6">
-            <div className="flex-1 bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
-              <p className="text-xs text-slate-400 uppercase font-bold">Total Rows</p>
-              <p className="text-xl font-black text-slate-700">{validationResults.total}</p>
+            <div className="flex-1 bg-jazz-paper p-3 rounded-lg border border-jazz-muted/20 text-center">
+              <p className="text-xs text-jazz-muted/80 uppercase font-bold">Total Rows</p>
+              <p className="text-xl font-black text-jazz-black/80">{validationResults.total}</p>
             </div>
             <div className={`flex-1 p-3 rounded-lg border text-center ${validationResults.errors.length > 0 ? 'bg-red-50 border-red-100' : 'bg-green-50 border-green-100'}`}>
               <p className={`text-xs uppercase font-bold ${validationResults.errors.length > 0 ? 'text-red-400' : 'text-green-600'}`}>Errors</p>
@@ -895,7 +895,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
               </h5>
               <ul className="space-y-2">
                 {validationResults.errors.map((err, i) => (
-                  <li key={i} className="text-xs text-red-700 bg-white p-2 rounded border border-red-100">
+                  <li key={i} className="text-xs text-red-700 bg-jazz-paper p-2 rounded border border-red-100">
                     <span className="font-bold mr-1">Row {err.row}:</span> 
                     {err.messages.join(" ")}
                   </li>
@@ -934,7 +934,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
           <button 
             disabled={validationResults.errors.length > 0}
             onClick={finishImport}
-            className={`w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all ${validationResults.errors.length > 0 ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-jazz-purple-600 text-white hover:bg-jazz-purple-700'}`}
+            className={`w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all ${validationResults.errors.length > 0 ? 'bg-jazz-muted/10 text-jazz-muted/80 cursor-not-allowed' : 'bg-jazz-purple-600 text-jazz-paper hover:bg-jazz-purple-700'}`}
           >
             {validationResults.errors.length > 0 ? 'Fix Errors to Import' : 'Import Schedule'}
           </button>
@@ -946,9 +946,9 @@ const CSVWizard = ({ onImport, type, onClose }) => {
            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-4">
              <Check size={32} />
            </div>
-           <h4 className="text-xl font-black text-slate-800 mb-2">Success!</h4>
-           <p className="text-sm text-slate-500 mb-6">Your schedule has been published and parents have been notified.</p>
-           <button onClick={onClose} className="bg-slate-100 text-slate-700 px-6 py-2 rounded-lg font-bold text-sm hover:bg-slate-200">
+           <h4 className="text-xl font-black text-jazz-black mb-2">Success!</h4>
+           <p className="text-sm text-jazz-muted mb-6">Your schedule has been published and parents have been notified.</p>
+           <button onClick={onClose} className="bg-jazz-paper text-jazz-black/80 px-6 py-2 rounded-lg font-bold text-sm hover:bg-jazz-muted/10">
              Done
            </button>
         </div>
@@ -970,9 +970,9 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
   };
 
   return (
-    <div className="mb-12 border-t border-slate-200 pt-8 mt-8">
+    <div className="mb-12 border-t border-jazz-muted/25 pt-8 mt-8">
       <div className="flex items-start justify-between mb-4 px-1">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider flex items-center gap-2">
           <Shield size={14} /> Team Admin
         </h3>
       </div>
@@ -985,25 +985,25 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="p-4 hover:border-purple-300 transition-colors cursor-pointer" onClick={() => setActiveWizard('Roster')}>
+          <Card className="p-4 hover:border-jazz-purple/30 transition-colors cursor-pointer" onClick={() => setActiveWizard('Roster')}>
             <div className="flex items-start justify-between">
               <div>
-                <h4 className="font-bold text-slate-700">Import Roster</h4>
-                <p className="text-xs text-slate-400 mt-1">CSV: Name, Number, Contact</p>
+                <h4 className="font-bold text-jazz-black/80">Import Roster</h4>
+                <p className="text-xs text-jazz-muted/80 mt-1">CSV: Name, Number, Contact</p>
               </div>
-              <div className="bg-jazz-purple-50 p-2 rounded-lg text-purple-600">
+              <div className="bg-jazz-purple-50 p-2 rounded-lg text-jazz-purple">
                 <Users size={20} />
               </div>
             </div>
           </Card>
 
-          <Card className="p-4 hover:border-purple-300 transition-colors cursor-pointer" onClick={() => setActiveWizard('Schedule')}>
+          <Card className="p-4 hover:border-jazz-purple/30 transition-colors cursor-pointer" onClick={() => setActiveWizard('Schedule')}>
              <div className="flex items-start justify-between">
               <div>
-                <h4 className="font-bold text-slate-700">Import Schedule</h4>
-                <p className="text-xs text-slate-400 mt-1">CSV: Date, Time, Location...</p>
+                <h4 className="font-bold text-jazz-black/80">Import Schedule</h4>
+                <p className="text-xs text-jazz-muted/80 mt-1">CSV: Date, Time, Location...</p>
               </div>
-              <div className="bg-jazz-purple-50 p-2 rounded-lg text-purple-600">
+              <div className="bg-jazz-purple-50 p-2 rounded-lg text-jazz-purple">
                 <Calendar size={20} />
               </div>
             </div>
@@ -1074,7 +1074,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-24 font-sans text-slate-800 selection:bg-yellow-200">
+    <div className="min-h-screen bg-jazz-paper pb-24 font-sans text-jazz-black selection:bg-yellow-200">
       <Header team={teamData} scrolled={scrolled} />
 
       <main className="max-w-md mx-auto px-4 pt-4">
@@ -1104,23 +1104,23 @@ export default function App() {
         <AdminTools isCoach={isCoach} onImportSchedule={handleScheduleImport} />
 
         <div className="mt-8 mb-8 text-center px-8">
-          <p className="text-slate-400 text-xs leading-relaxed italic">
+          <p className="text-jazz-muted/80 text-xs leading-relaxed italic">
             "We build confidence through preparation and sportsmanship. The scoreboard is secondary to our growth."
           </p>
         </div>
       </main>
 
       <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-slate-900/90 backdrop-blur-md text-white p-1.5 rounded-full shadow-2xl flex items-center space-x-1 border border-slate-700/50">
+        <div className="bg-jazz-black/90 backdrop-blur-md text-jazz-paper p-1.5 rounded-full shadow-2xl flex items-center space-x-1 border border-jazz-black/25/50">
           <button 
             onClick={() => setIsCoach(false)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${!isCoach ? 'bg-white text-slate-900 shadow-md' : 'text-slate-400 hover:text-white'}`}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${!isCoach ? 'bg-jazz-paper text-jazz-black shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
           >
             Parent
           </button>
           <button 
             onClick={() => setIsCoach(true)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${isCoach ? 'bg-jazz-purple-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${isCoach ? 'bg-jazz-purple-600 text-jazz-paper shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
           >
             Coach
           </button>
