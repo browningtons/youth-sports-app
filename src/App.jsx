@@ -351,7 +351,7 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
         />
 
         {isEditing ? (
-          <div className="space-y-4 relative z-10">
+          <div className="space-y-2 relative z-10">
             <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/20 mb-4">
               <label className="text-[10px] text-jazz-paper/80 block mb-1 uppercase font-bold flex items-center gap-1">
                 <BookOpen size={10} /> Load from Curriculum
@@ -587,7 +587,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   };
 
   return (
-    <div className="mb-6">
+    <div className="mb-2">
       <div className="flex justify-between items-center px-1 mb-3">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">Roster ({players.length})</h3>
         {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
@@ -596,7 +596,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
       <div className="grid grid-cols-2 md:grid-cols-2 gap-3">
         {players.map((player) => (
           <Card key={player.id} className="p-3 flex flex-col justify-between h-full">
-            <div className="flex items-center space-x-3 mb-2">
+            <div className="flex items-center space-x-2 mb-2">
               <div className="w-10 h-10 bg-jazz-paper rounded-full flex items-center justify-center text-jazz-muted font-bold text-lg shrink-0">
                 {player.number}
               </div>
@@ -1130,7 +1130,7 @@ export default function App() {
         </main>
 
         <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-jazz-black/90 backdrop-blur-md text-jazz-paper p-1.5 rounded-full shadow-2xl flex items-center space-x-1 border border-jazz-black/25/50">
+          <div className="bg-jazz-black/90 backdrop-blur-md text-jazz-paper p-1.5 rounded-full shadow-2xl flex items-center space-x-2 border border-jazz-black/25/50">
             <button 
               onClick={() => setIsCoach(false)}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${!isCoach ? 'bg-jazz-paper text-jazz-black shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
