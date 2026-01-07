@@ -344,14 +344,14 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
         )}
       </div>
 
-      <Card className="bg-gradient-to-br from-jazz-purple to-jazz-black text-jazz-paper p-6 relative">
+      <Card className="bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl">
         <div className="absolute top-0 right-0 p-4 opacity-10">
-          <Zap size={80} />
+          <Zap size={60} />
         </div>
 
         {isEditing ? (
           <div className="space-y-4 relative z-10">
-            <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/10 mb-4">
+            <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/20 mb-4">
               <label className="text-[10px] text-jazz-paper/80 block mb-1 uppercase font-bold flex items-center gap-1">
                 <BookOpen size={10} /> Load from Curriculum
               </label>
