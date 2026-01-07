@@ -646,46 +646,39 @@ const StandingsSection = ({ standings, teamName }) => (
 );
 
 const Header = ({ team, scrolled }) => (
-  <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-slate-50 py-4'}`}>
-     <div className="max-w-md mx-auto px-4 flex items-center justify-between">
-    {/* LEFT: logo + text */}
-    <div
-      className={`relative flex items-center justify-center rounded-full bg-white
-        shadow-[0_6px_18px_rgba(0,0,0,0.15)]
-        transition-all duration-300
-        ${scrolled ? "w-14 h-14 -translate-y-1" : "w-18 h-18 -translate-y-2"}
-      `}
-    >
-      <img
-        src={logo}
-        alt="Utah Jazz Basketball"
-        className="w-4/5 h-4/5 object-contain"
-      />
-    </div>
-      <div className="flex flex-col items-start">
-        <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">
+  <header
+    className={
+      `sticky top-0 z-40 border-b border-slate-200 transition-all duration-300 ` +
+      (scrolled ? "bg-white/90 backdrop-blur-md" : "bg-white")
+    }
+  >
+    <div className={"max-w-md mx-auto " + (scrolled ? "pt-3" : "pt-4") + " pb-3"}>
+      {/* Logo spans full header width */}
+      <div className="px-4">
+        <img
+          src={logo}
+          alt="Utah Jazz Basketball"
+          className={
+            "w-full object-contain " +
+            (scrolled ? "max-h-[52px]" : "max-h-[64px]")
+          }
+        />
+      </div>
+
+      {/* League name then Coach/Team name */}
+      <div className="mt-3 flex flex-col items-center text-center px-4">
+        <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
           {team.league}
         </p>
-        <h1
-          className={`font-black text-slate-800 leading-tight transition-all ${
-            scrolled ? "text-2xl" : "text-3xl"
-          }`}
-        >
+        <h1 className={"font-black text-slate-900 leading-tight " + (scrolled ? "text-2xl" : "text-3xl")}>
           {team.name}
         </h1>
+        {/* Optional: show season / record in a subtle line */}
+        <div className="mt-1 text-xs text-slate-500 font-semibold">
+          {team.season} • Record {team.record.w}-{team.record.l}
+        </div>
       </div>
     </div>
-
-    {/* RIGHT: record */}
-    <div className="text-right">
-      <div className="inline-flex flex-col items-end">
-        <span className="text-xs font-bold text-slate-400 uppercase">Record</span>
-        <span className="font-bold text-slate-700">
-          {team.record.w}-{team.record.l}
-        </span>
-      </div>
-    </div>
-  </div>
   </header>
 );
 
