@@ -678,7 +678,7 @@ const StandingsSection = ({ standings, teamName }) => (
   </div>
 );
 
-const Header = ({ team, scrolled }) => (
+const Header = ({ team, scrolled, schedule }) => (
   <header
     className={
       `sticky top-0 z-40 transition-all duration-300 ` +
@@ -713,13 +713,10 @@ const Header = ({ team, scrolled }) => (
         >
           {team.name}
         </h1>
-        {/* Optional: season / record */}
         <div className="mt-1 text-xs font-semibold text-jazz-black/70">
-          Record {team.record.w}-{team.record.l}
+          Record {team.record.w}-{team.record.l} • {" "}
+          <span className="text-jazz-muted">{schedule.length} Games</span>
         </div>
-        <span className="text-xs text-jazz-muted">
-          8 Games
-        </span>
       </div>
     </div>
   </header>
@@ -1108,7 +1105,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-jazz-paper pb-24 font-sans text-jazz-black selection:bg-yellow-200">
-      <Header team={teamData} scrolled={scrolled} />
+      <Header team={teamData} scrolled={scrolled} schedule={schedule} />
 
       <div className="bg-jazz-muted/10">
 
