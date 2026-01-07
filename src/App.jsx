@@ -329,7 +329,7 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between mb-2 px-1">
-        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">
+        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">
           This Week's Focus
         </h3>
 
@@ -446,7 +446,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   if (!schedule || schedule.length === 0) {
     return (
       <div className="mb-8">
-        <h3 className="text-sm font-bold text-jazz-muted uppercase tracking-wider mb-2 px-1">
+        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">
           Upcoming
         </h3>
         <Card className="p-8 text-center bg-jazz-paper border-dashed border-2 border-jazz-muted/30 shadow-none">
@@ -461,7 +461,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   return (
     <div className="mb-8 -mx-4 md:mx-0">
       <div className="flex justify-between items-center px-4 md:px-1 mb-2">
-        <h3 className="text-sm font-bold text-jazz-muted uppercase tracking-wider">Schedule</h3>
+        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">Schedule</h3>
       </div>
 
       <div className="flex flex-col gap-3 px-4 md:px-0">
@@ -589,7 +589,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center px-1 mb-3">
-        <h3 className="text-lg font-bold text-jazz-muted/80 uppercase tracking-wider">Roster ({players.length})</h3>
+        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">Roster ({players.length})</h3>
         {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
       </div>
 
@@ -639,7 +639,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
 
 const StandingsSection = ({ standings, teamName }) => (
   <div className="mb-8">
-    <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider mb-2 px-1">Standings</h3>
+    <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">Standings</h3>
     <Card className="overflow-hidden">
       <table className="w-full text-sm text-left">
         <thead className="bg-jazz-paper text-jazz-muted/80 font-medium">
@@ -997,7 +997,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
   return (
     <div className="mb-12 border-t border-jazz-muted/25 pt-8 mt-8">
       <div className="flex items-start justify-between mb-4 px-1">
-        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider flex items-center gap-2">
+        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">
           <Shield size={14} /> Team Admin
         </h3>
       </div>
