@@ -303,19 +303,17 @@ const Badge = ({ children, type = "neutral" }) => {
   );
 };
 
-
 const WeeklyFocus = ({ focus, isCoach, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempTopic, setTempTopic] = useState(focus.topic);
   const [tempQuote, setTempQuote] = useState(focus.quote);
-  const [tempNote, setTempNote] = useState(focus.note || '');
+  const [tempNote, setTempNote] = useState(focus.note || "");
 
-  // Update temp state when focus prop changes (e.g. auto-update from time)
   useEffect(() => {
     if (!isEditing) {
       setTempTopic(focus.topic);
       setTempQuote(focus.quote);
-      setTempNote(focus.note || '');
+      setTempNote(focus.note || "");
     }
   }, [focus, isEditing]);
 
@@ -331,122 +329,121 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
     setTempNote(data.note);
   };
 
-return (
-  <div className="mb-6">
-    <div className="flex items-center justify-between mb-2 px-1">
-      <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">
-        This Week's Focus
-      </h3>
+  return (
+    <div className="mb-6">
+      <div className="flex items-center justify-between mb-2 px-1">
+        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">
+          This Week's Focus
+        </h3>
 
-      {isCoach && !isEditing && (
-        <button
-          onClick={() => setIsEditing(true)}
-          className="text-yellow-600 text-xs font-semibold flex items-center hover:bg-yellow-50 px-2 py-1 rounded-full transition-colors"
-        >
-          <Edit2 size={12} className="mr-1" /> Edit
-        </button>
-      )}
-    </div>
+        {isCoach && !isEditing && (
+          <button
+            onClick={() => setIsEditing(true)}
+            className="text-yellow-600 text-xs font-semibold flex items-center hover:bg-yellow-50 px-2 py-1 rounded-full transition-colors"
+          >
+            <Edit2 size={12} className="mr-1" /> Edit
+          </button>
+        )}
+      </div>
 
-    <Card className="w-full bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl overflow-hidden">
-      {/* Watermark: subtle, left, behind everything */}
-      <img
-        src={utahLogo}
-        alt="Utah Jazz Basketball Icon"
-        className="absolute left-6 top-1/2 -translate-y-1/2 w-28 h-28 opacity-[0.06] pointer-events-none select-none"
-      />
+      <Card className="w-full bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl overflow-hidden">
+        <img
+          src={utahLogo}
+          alt="Utah Jazz Basketball Icon"
+          className="absolute left-6 top-1/2 -translate-y-1/2 w-28 h-28 opacity-[0.06] pointer-events-none select-none"
+        />
 
-      {isEditing ? (
-        <div className="space-y-4 relative z-10">
-          <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/20 mb-4">
-            <label className="text-[10px] text-jazz-paper/80 block mb-1 uppercase font-bold flex items-center gap-1">
-              <BookOpen size={10} /> Load from Curriculum
-            </label>
-            <select
-              onChange={(e) => loadFromLibrary(e.target.value)}
-              className="w-full bg-jazz-paper/20 border-none rounded text-xs text-jazz-paper p-2 focus:ring-1 focus:ring-yellow-400"
-              defaultValue=""
-            >
-              <option value="" disabled>Select a week to auto-fill...</option>
-              {FOCUS_LIBRARY.map((item, idx) => (
-                <option key={item.week} value={idx}>
-                  Week {item.week}: {item.topic}
+        {isEditing ? (
+          <div className="space-y-4 relative z-10">
+            <div className="bg-jazz-paper/10 p-3 rounded-lg border border-jazz-paper/20 mb-4">
+              <label className="text-[10px] text-jazz-paper/80 block mb-1 uppercase font-bold flex items-center gap-1">
+                <BookOpen size={10} /> Load from Curriculum
+              </label>
+              <select
+                onChange={(e) => loadFromLibrary(e.target.value)}
+                className="w-full bg-jazz-paper/20 border-none rounded text-xs text-jazz-paper p-2 focus:ring-1 focus:ring-yellow-400"
+                defaultValue=""
+              >
+                <option value="" disabled>
+                  Select a week to auto-fill...
                 </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="text-xs text-jazz-paper/80 block mb-1">Technical Focus</label>
-            <input
-              value={tempTopic}
-              onChange={(e) => setTempTopic(e.target.value)}
-              className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
-            />
-          </div>
-
-          <div>
-            <label className="text-xs text-jazz-paper/80 block mb-1">Mantra / Quote</label>
-            <textarea
-              value={tempQuote}
-              onChange={(e) => setTempQuote(e.target.value)}
-              className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
-              rows={2}
-            />
-          </div>
-
-          <div>
-            <label className="text-xs text-jazz-paper/80 block mb-1">Coach Note (Private/Small)</label>
-            <input
-              value={tempNote}
-              onChange={(e) => setTempNote(e.target.value)}
-              className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50 text-xs"
-            />
-          </div>
-
-          <div className="flex gap-2 mt-4">
-            <button
-              onClick={handleSave}
-              className="flex-1 bg-yellow-400 text-jazz-purple font-bold py-2 rounded-lg text-sm hover:bg-yellow-300 transition-colors"
-            >
-              Save Update
-            </button>
-            <button
-              onClick={() => setIsEditing(false)}
-              className="px-4 bg-transparent border border-jazz-paper/30 text-jazz-paper font-semibold py-2 rounded-lg text-sm hover:bg-jazz-paper/10 transition-colors"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      ) : (
-        // Content: centered, with left padding only inside the card (so header stays aligned)
-        <div className="relative z-10 pl-16">
-          <h2 className="text-3xl font-black mb-2 tracking-tight text-jazz-paper text-center">
-            {focus.topic}
-          </h2>
-
-          <div className="w-14 h-1 bg-yellow-400 rounded-full mb-4 mx-auto" />
-
-          <p className="text-jazz-paper/90 font-semibold italic opacity-90 text-lg text-center">
-            {focus.quote}
-          </p>
-
-          {focus.note && (
-            <div className="mt-5 pt-3 border-t border-jazz-paper/20">
-              <p className="text-xs text-jazz-paper/75 flex items-start gap-2">
-                <span className="font-bold uppercase tracking-wider opacity-80">
-                  Coach Note:
-                </span>
-                <span>{focus.note}</span>
-              </p>
+                {FOCUS_LIBRARY.map((item, idx) => (
+                  <option key={item.week} value={idx}>
+                    Week {item.week}: {item.topic}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
-        </div>
-      )}
-    </Card>
-  </div>
-);
+
+            <div>
+              <label className="text-xs text-jazz-paper/80 block mb-1">Technical Focus</label>
+              <input
+                value={tempTopic}
+                onChange={(e) => setTempTopic(e.target.value)}
+                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
+              />
+            </div>
+
+            <div>
+              <label className="text-xs text-jazz-paper/80 block mb-1">Mantra / Quote</label>
+              <textarea
+                value={tempQuote}
+                onChange={(e) => setTempQuote(e.target.value)}
+                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50"
+                rows={2}
+              />
+            </div>
+
+            <div>
+              <label className="text-xs text-jazz-paper/80 block mb-1">Coach Note (Private/Small)</label>
+              <input
+                value={tempNote}
+                onChange={(e) => setTempNote(e.target.value)}
+                className="w-full bg-jazz-paper/10 border border-jazz-paper/20 rounded-lg px-3 py-2 text-jazz-paper focus:outline-none focus:ring-2 focus:ring-yellow-400/50 text-xs"
+              />
+            </div>
+
+            <div className="flex gap-2 mt-4">
+              <button
+                onClick={handleSave}
+                className="flex-1 bg-yellow-400 text-jazz-purple font-bold py-2 rounded-lg text-sm hover:bg-yellow-300 transition-colors"
+              >
+                Save Update
+              </button>
+              <button
+                onClick={() => setIsEditing(false)}
+                className="px-4 bg-transparent border border-jazz-paper/30 text-jazz-paper font-semibold py-2 rounded-lg text-sm hover:bg-jazz-paper/10 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="relative z-10 pl-16">
+            <h2 className="text-3xl font-black mb-2 tracking-tight text-jazz-paper text-center">
+              {focus.topic}
+            </h2>
+
+            <div className="w-14 h-1 bg-yellow-400 rounded-full mb-4 mx-auto" />
+
+            <p className="text-jazz-paper/90 font-semibold italic opacity-90 text-lg text-center">
+              {focus.quote}
+            </p>
+
+            {focus.note && (
+              <div className="mt-5 pt-3 border-t border-jazz-paper/20">
+                <p className="text-xs text-jazz-paper/75 flex items-start gap-2">
+                  <span className="font-bold uppercase tracking-wider opacity-80">Coach Note:</span>
+                  <span>{focus.note}</span>
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </Card>
+    </div>
+  );
+};
 
 const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   if (!schedule || schedule.length === 0) {
@@ -1043,6 +1040,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
       )}
     </div>
   );
+};
 
 export default function App() {
   const [isCoach, setIsCoach] = useState(false);
