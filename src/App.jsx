@@ -645,11 +645,14 @@ const StandingsSection = ({ standings, teamName }) => (
   </div>
 );
 
+
 const Header = ({ team, scrolled }) => (
   <header
     className={
-      `sticky top-0 z-40 border-b border-slate-200 transition-all duration-300 ` +
-      (scrolled ? "bg-white/90 backdrop-blur-md" : "bg-white")
+      `sticky top-0 z-40 border-b transition-all duration-300 ` +
+      (scrolled
+        ? "bg-jazz-paper/90 backdrop-blur-md border-jazz-purple"
+        : "bg-jazz-paper border-jazz-purple")
     }
   >
     <div className={"max-w-md mx-auto " + (scrolled ? "pt-3" : "pt-4") + " pb-3"}>
@@ -660,27 +663,33 @@ const Header = ({ team, scrolled }) => (
           alt="Utah Jazz Basketball"
           className={
             "w-full object-contain " +
-            (scrolled ? "max-h-[52px]" : "max-h-[64px]")
+            (scrolled ? "max-h-[64px]" : "max-h-[84px]")
           }
         />
       </div>
 
       {/* League name then Coach/Team name */}
       <div className="mt-3 flex flex-col items-center text-center px-4">
-        <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+        <p className="text-[11px] font-bold uppercase tracking-wider text-jazz-muted">
           {team.league}
         </p>
-        <h1 className={"font-black text-slate-900 leading-tight " + (scrolled ? "text-2xl" : "text-3xl")}>
+        <h1
+          className={
+            "font-black leading-tight text-jazz-purple " +
+            (scrolled ? "text-2xl" : "text-3xl")
+          }
+        >
           {team.name}
         </h1>
-        {/* Optional: show season / record in a subtle line */}
-        <div className="mt-1 text-xs text-slate-500 font-semibold">
-          {team.season} • Record {team.record.w}-{team.record.l}
+        {/* Optional: season / record */}
+        <div className="mt-1 text-xs font-semibold text-jazz-black/70">
+          Record {team.record.w}-{team.record.l}
         </div>
       </div>
     </div>
   </header>
 );
+
 
 const CSVWizard = ({ onImport, type, onClose }) => {
   const [step, setStep] = useState('upload'); // upload, validating, results, success
