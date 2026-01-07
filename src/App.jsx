@@ -277,25 +277,31 @@ const Card = ({ children, className = "", onClick }) => (
   </div>
 );
 
-const Badge = ({ children, type = 'neutral' }) => {
+const Badge = ({ children, type = "neutral" }) => {
   const styles = {
-    neutral: 'bg-slate-100 text-slate-600',
-    primary: 'bg-jazz-purple-100 text-purple-800',
-    accent: 'bg-yellow-100 text-yellow-800',
-    success: 'bg-green-100 text-green-800',
-    error: 'bg-red-100 text-red-800',
-    warning: 'bg-orange-100 text-orange-800',
-    home: 'bg-[rgb(0,71,27)] text-white', 
-    away: 'bg-[rgb(249,160,27)] text-slate-900',
-    win: 'bg-green-100 text-green-800',
-    loss: 'bg-red-100 text-red-800'
+    neutral: "bg-jazz-muted/20 text-jazz-black",
+    primary: "bg-jazz-purple text-white",
+    accent: "bg-jazz-sky text-jazz-black",
+
+    home: "bg-jazz-purple text-white",
+    away: "bg-jazz-sky text-jazz-black",
+
+    win: "bg-jazz-purple/15 text-jazz-purple",
+    loss: "bg-jazz-black/10 text-jazz-black",
+
+    warning: "bg-jazz-sky/20 text-jazz-black",
+    error: "bg-jazz-black text-white",
   };
+
   return (
-    <span className={`px-2 py-1 rounded-lg text-xs font-semibold tracking-wide ${styles[type]}`}>
+    <span
+      className={`inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold tracking-wide ${styles[type]}`}
+    >
       {children}
     </span>
   );
 };
+
 
 const WeeklyFocus = ({ focus, isCoach, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
