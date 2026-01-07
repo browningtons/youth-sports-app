@@ -717,6 +717,9 @@ const Header = ({ team, scrolled }) => (
         <div className="mt-1 text-xs font-semibold text-jazz-black/70">
           Record {team.record.w}-{team.record.l}
         </div>
+        <span className="text-xs text-jazz-muted">
+          8 Games
+        </span>
       </div>
     </div>
   </header>
