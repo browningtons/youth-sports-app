@@ -641,40 +641,40 @@ const StandingsSection = ({ standings, teamName }) => (
 
 const Header = ({ team, scrolled }) => (
   <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-slate-50 py-4'}`}>
-    <div className="max-w-md mx-auto px-4 flex items-center justify-between">
-      <div className="flex items-center space-x-3">
-        <div
-          className={`transition-all duration-300 rounded-full bg-white flex items-center justify-center shadow-md border border-slate-200 ${
-            scrolled ? "w-12 h-12" : "w-16 h-16"
+     <div className="max-w-md mx-auto px-4 flex items-center justify-between">
+    {/* LEFT: logo + text */}
+    <div className="flex items-center gap-4 text-left">
+      <img
+        src={logo}
+        alt={`${team.name} logo`}
+        className={`transition-all duration-300 object-contain ${scrolled ? "h-8" : "h-12"}`}
+        style={{ aspectRatio: "750 / 327" }}
+      />
+
+      <div className="flex flex-col items-start">
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">
+          {team.league}
+        </p>
+        <h1
+          className={`font-black text-slate-800 leading-tight transition-all ${
+            scrolled ? "text-lg" : "text-xl"
           }`}
         >
-          <img
-            src={logo}
-            alt={`${team.name} logo`}
-            className="w-4/5 h-4/5 object-contain"
-            style={{ aspectRatio: "1 / 1" }}
-          />
-        </div>
-        <div>
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-            {team.league}
-          </p>
-          <h1
-            className={`font-black text-slate-800 leading-tight transition-all ${
-              scrolled ? "text-lg" : "text-2xl"
-            }`}
-          >
-            {team.name}
-          </h1>
-        </div>
-      </div>
-      <div className="text-right">
-        <div className="inline-flex flex-col items-end">
-          <span className="text-xs font-bold text-slate-400 uppercase">Record</span>
-          <span className="font-bold text-slate-700">{team.record.w}-{team.record.l}</span>
-        </div>
+          {team.name}
+        </h1>
       </div>
     </div>
+
+    {/* RIGHT: record */}
+    <div className="text-right">
+      <div className="inline-flex flex-col items-end">
+        <span className="text-xs font-bold text-slate-400 uppercase">Record</span>
+        <span className="font-bold text-slate-700">
+          {team.record.w}-{team.record.l}
+        </span>
+      </div>
+    </div>
+  </div>
   </header>
 );
 
