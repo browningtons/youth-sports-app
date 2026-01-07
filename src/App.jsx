@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import logo from "./assets/jazz-logo.png";
+import utahLogo from "./assets/utah-logo.png";
 
 import {
   Calendar,
@@ -343,11 +344,12 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
           </button>
         )}
       </div>
-
+      <img
+        src={utahLogo}
+        alt="Utah Jazz Basketball Icon"
+        className="absolute top-1/2 right-6 -translate-y-1/2 w-24 h-24 opacity-10 pointer-events-none"
+      />
       <Card className="bg-jazz-purple text-jazz-paper p-6 relative rounded-3xl">
-        <div className="absolute top-0 right-0 p-4 opacity-10">
-          <Zap size={60} />
-        </div>
 
         {isEditing ? (
           <div className="space-y-4 relative z-10">
@@ -571,7 +573,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
         {players.map((player) => (
           <Card key={player.id} className="p-3 flex flex-col justify-between h-full">
             <div className="flex items-center space-x-3 mb-2">
-              <div className="w-10 h-10 bg-jazz-paper rounded-full flex items-center justify-center text-jazz-muted font-bold text-sm shrink-0">
+              <div className="w-10 h-10 bg-jazz-paper rounded-full flex items-center justify-center text-jazz-muted font-bold text-lg shrink-0">
                 {player.number}
               </div>
               <div>
