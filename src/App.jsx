@@ -643,14 +643,17 @@ const Header = ({ team, scrolled }) => (
   <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-slate-50 py-4'}`}>
      <div className="max-w-md mx-auto px-4 flex items-center justify-between">
     {/* LEFT: logo + text */}
-    <div className="flex items-center gap-4 text-left">
-      <img
-        src={logo}
-        alt={`${team.name} logo`}
-        className={`transition-all duration-300 object-contain ${scrolled ? "h-8" : "h-12"}`}
-        style={{ aspectRatio: "750 / 327" }}
-      />
-
+    <div
+    className={`relative flex items-center justify-center rounded-full bg-white transition-all duration-300
+          ${scrolled ? "w-14 h-14 -translate-y-1" : "w-18 h-18 -translate-y-2"}
+          shadow-[0_6px_18px_rgba(0,0,0,0.15)]`}
+      >
+        <img
+          src={badgeLogo}
+          alt="Utah Jazz Basketball badge"
+          className="w-4/5 h-4/5 object-contain"
+        />
+      </div>
       <div className="flex flex-col items-start">
         <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">
           {team.league}
