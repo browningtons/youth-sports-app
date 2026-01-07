@@ -459,7 +459,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   }
 
   return (
-    <div className="mt-8 -mx-4 md:mx-0">
+    <div className="-mx-4 md:mx-0">
       <div className="flex justify-between items-center px-4 md:px-1 mb-4">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">
           Schedule
@@ -588,12 +588,13 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   };
 
   return (
-    <div className="mb-2">
-      <div className="flex justify-between items-center px-1 mb-3">
-        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">Roster ({players.length})</h3>
-        {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
+    <div className="mt-10">
+      <div className="flex justify-between items-center px-1 mb-4">
+        <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">
+          Roster ({players.length})
+        </h3>
       </div>
-
+        {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
       <div className="grid grid-cols-2 md:grid-cols-2 gap-3">
         {players.map((player) => (
           <Card key={player.id} className="p-3 flex flex-col justify-between h-full">
