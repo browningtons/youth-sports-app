@@ -651,7 +651,7 @@ const Header = ({ team, scrolled }) => (
       `}
     >
       <img
-        src={badgeLogo}
+        src={logo}
         alt="Utah Jazz Basketball badge"
         className="w-4/5 h-4/5 object-contain"
       />
