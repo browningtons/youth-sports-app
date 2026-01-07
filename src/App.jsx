@@ -644,18 +644,24 @@ const Header = ({ team, scrolled }) => (
     <div className="max-w-md mx-auto px-4 flex items-center justify-between">
       <div className="flex items-center space-x-3">
         <div
-          className={`transition-all duration-300 rounded-full bg-white flex items-center justify-center shadow-sm border border-slate-200 ${
-            scrolled ? "w-9 h-9" : "w-14 h-14"
+          className={`transition-all duration-300 rounded-full bg-white flex items-center justify-center shadow-md border border-slate-200 ${
+            scrolled ? "w-14 h-14" : "w-20 h-20"
           }`}>
           <img
             src={logo}
             alt={`${team.name} logo`}
-            className="w-full h-full object-contain p-1"
+            className="w-full h-full object-contain p-2"
           />
         </div>
         <div>
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">{team.league}</p>
-          <h1 className={`font-black text-slate-800 leading-tight transition-all ${scrolled ? 'text-lg' : 'text-xl'}`}>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            {team.league}
+          </p>
+          <h1
+            className={`font-black text-slate-800 leading-tight transition-all ${
+              scrolled ? "text-lg" : "text-2xl"
+            }`}
+          >
             {team.name}
           </h1>
         </div>
