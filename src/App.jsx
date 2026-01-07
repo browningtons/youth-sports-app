@@ -674,7 +674,7 @@ const Header = ({ team, scrolled }) => (
         </span>
       </div>
     </div>
-  </div>ScheduleSection
+  </div>
   </header>
 );
 
