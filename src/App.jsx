@@ -565,7 +565,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center px-1 mb-3">
-        <h3 className="text-sm font-bold text-jazz-muted/80 uppercase tracking-wider">Roster ({players.length})</h3>
+        <h3 className="text-lg font-bold text-jazz-muted/80 uppercase tracking-wider">Roster ({players.length})</h3>
         {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
       </div>
 
