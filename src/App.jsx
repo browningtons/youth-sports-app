@@ -633,7 +633,7 @@ const StandingsSection = ({ standings, teamName }) => (
         </tbody>
       </table>
       <div className="bg-slate-50 p-3 text-center border-t border-slate-100">
-        <p className="text-xs text-slate-400">Regular Season • U12 Mountain View</p>
+        <p className="text-xs text-slate-400">Regular Season • 2026 co-ed Jr Jazz Basketball</p>
       </div>
     </Card>
   </div>
@@ -650,7 +650,8 @@ const Header = ({ team, scrolled }) => (
           <img
             src={logo}
             alt={`${team.name} logo`}
-            className="w-full h-full object-contain p-2"
+            className="w-4/5 h-4/5 object-contain"
+            style={{ aspectRatio: "1 / 1" }}
           />
         </div>
         <div>
