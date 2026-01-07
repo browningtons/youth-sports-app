@@ -68,8 +68,8 @@ const INITIAL_TEAM_DATA = {
   league: '2026 co-ed Jr Jazz Basketball',
   season: 'Winter 2026',
   record: { w: 0, l: 0 },
-  primaryColor: 'bg-purple-700',
-  secondaryColor: 'bg-purple-50',
+  primaryColor: 'bg-jazz-purple-700',
+  secondaryColor: 'bg-jazz-purple-50',
 };
 
 // Default schedule populated from "Brown, Paul" in the attached CSV
@@ -280,7 +280,7 @@ const Card = ({ children, className = "", onClick }) => (
 const Badge = ({ children, type = 'neutral' }) => {
   const styles = {
     neutral: 'bg-slate-100 text-slate-600',
-    primary: 'bg-purple-100 text-purple-800',
+    primary: 'bg-jazz-purple-100 text-purple-800',
     accent: 'bg-yellow-100 text-yellow-800',
     success: 'bg-green-100 text-green-800',
     error: 'bg-red-100 text-red-800',
@@ -528,7 +528,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
         
         {isCoach && (
            <div className="mt-2">
-             <button className="w-full py-3 rounded-2xl border-2 border-dashed border-slate-300 text-slate-400 font-bold text-sm hover:text-purple-600 hover:border-purple-300 hover:bg-purple-50 transition-all flex items-center justify-center">
+             <button className="w-full py-3 rounded-2xl border-2 border-dashed border-slate-300 text-slate-400 font-bold text-sm hover:text-purple-600 hover:border-purple-300 hover:bg-jazz-purple-50 transition-all flex items-center justify-center">
                 <span className="text-lg mr-2">+</span> Add Game Manually
              </button>
            </div>
@@ -585,7 +585,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
               </select>
             ) : (
               player.role && (
-                <div className="flex items-center text-xs text-purple-600 font-medium mt-1 bg-purple-50 self-start px-2 py-0.5 rounded-full">
+                <div className="flex items-center text-xs text-purple-600 font-medium mt-1 bg-jazz-purple-50 self-start px-2 py-0.5 rounded-full">
                   {getRoleIcon(player.role)}
                   {player.role}
                 </div>
@@ -620,11 +620,11 @@ const StandingsSection = ({ standings, teamName }) => (
           {standings.map((team) => {
             const isMyTeam = teamName.includes(team.name) || teamName.includes(team.name.split(' ')[1]); 
             return (
-              <tr key={team.rank} className={isMyTeam ? "bg-purple-50/50" : ""}>
+              <tr key={team.rank} className={isMyTeam ? "bg-jazz-purple-50/50" : ""}>
                 <td className="py-3 px-4 font-medium text-slate-400">{team.rank}</td>
                 <td className={`py-3 px-2 font-bold ${isMyTeam ? 'text-purple-900' : 'text-slate-700'}`}>
                   {team.name}
-                  {isMyTeam && <span className="ml-2 inline-block w-2 h-2 bg-purple-600 rounded-full"></span>}
+                  {isMyTeam && <span className="ml-2 inline-block w-2 h-2 bg-jazz-purple-600 rounded-full"></span>}
                 </td>
                 <td className="py-3 px-4 text-right text-slate-600 tabular-nums">{team.w}-{team.l}</td>
               </tr>
@@ -652,7 +652,7 @@ const Header = ({ team, scrolled }) => (
     >
       <img
         src={logo}
-        alt="Utah Jazz Basketball badge"
+        alt="Utah Jazz Basketball"
         className="w-4/5 h-4/5 object-contain"
       />
     </div>
@@ -799,7 +799,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
 
       {step === 'upload' && (
         <div 
-          className={`border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer ${dragActive ? 'border-purple-500 bg-purple-50' : 'border-slate-300 hover:border-purple-400 hover:bg-slate-50'}`}
+          className={`border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer ${dragActive ? 'border-purple-500 bg-jazz-purple-50' : 'border-slate-300 hover:border-purple-400 hover:bg-slate-50'}`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
@@ -813,7 +813,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
             accept=".csv"
             onChange={(e) => handleFile(e.target.files[0])}
           />
-          <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mx-auto mb-3">
+          <div className="w-12 h-12 bg-jazz-purple-100 rounded-full flex items-center justify-center text-purple-600 mx-auto mb-3">
             <Upload size={24} />
           </div>
           <p className="text-sm font-semibold text-slate-700">Click to upload or drag and drop</p>
@@ -839,7 +839,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
           
           {/* TEAM SELECTOR - NEW */}
           {type === 'Schedule' && uniqueTeams.length > 0 && (
-             <div className="mb-6 bg-purple-50 border border-purple-100 p-4 rounded-xl">
+             <div className="mb-6 bg-jazz-purple-50 border border-purple-100 p-4 rounded-xl">
                <div className="flex items-start gap-3">
                  <div className="bg-white p-2 rounded-lg text-purple-600 shadow-sm mt-1">
                    <Filter size={20} />
@@ -926,7 +926,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
           <button 
             disabled={validationResults.errors.length > 0}
             onClick={finishImport}
-            className={`w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all ${validationResults.errors.length > 0 ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-purple-600 text-white hover:bg-purple-700'}`}
+            className={`w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all ${validationResults.errors.length > 0 ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-jazz-purple-600 text-white hover:bg-jazz-purple-700'}`}
           >
             {validationResults.errors.length > 0 ? 'Fix Errors to Import' : 'Import Schedule'}
           </button>
@@ -983,7 +983,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
                 <h4 className="font-bold text-slate-700">Import Roster</h4>
                 <p className="text-xs text-slate-400 mt-1">CSV: Name, Number, Contact</p>
               </div>
-              <div className="bg-purple-50 p-2 rounded-lg text-purple-600">
+              <div className="bg-jazz-purple-50 p-2 rounded-lg text-purple-600">
                 <Users size={20} />
               </div>
             </div>
@@ -995,7 +995,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
                 <h4 className="font-bold text-slate-700">Import Schedule</h4>
                 <p className="text-xs text-slate-400 mt-1">CSV: Date, Time, Location...</p>
               </div>
-              <div className="bg-purple-50 p-2 rounded-lg text-purple-600">
+              <div className="bg-jazz-purple-50 p-2 rounded-lg text-purple-600">
                 <Calendar size={20} />
               </div>
             </div>
@@ -1112,7 +1112,7 @@ export default function App() {
           </button>
           <button 
             onClick={() => setIsCoach(true)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${isCoach ? 'bg-purple-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${isCoach ? 'bg-jazz-purple-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
           >
             Coach
           </button>
