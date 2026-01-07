@@ -588,7 +588,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-6">
       <div className="flex justify-between items-center px-1 mb-4">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider">
           Roster ({players.length})
