@@ -567,7 +567,7 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
         {isCoach && <button className="text-xs font-semibold text-jazz-purple hover:text-jazz-purple">Edit Roster</button>}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-3">
         {players.map((player) => (
           <Card key={player.id} className="p-3 flex flex-col justify-between h-full">
             <div className="flex items-center space-x-3 mb-2">
@@ -576,7 +576,6 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
               </div>
               <div>
                 <p className="font-bold text-jazz-black text-sm leading-tight">{player.name}</p>
-                <p className="text-[10px] text-jazz-muted/80">Athlete</p>
               </div>
             </div>
             
