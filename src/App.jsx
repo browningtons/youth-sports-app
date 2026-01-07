@@ -111,9 +111,11 @@ const PLAYER_ROLES = [
   'Rebounder', 'Spark', 'Anchor', 'Finisher', 'Energy'
 ];
 
-/**
- * UTILITY: Processing Logic
- */
+const PRACTICE = {
+  day: "Friday",
+  time: "8:00 PM",
+  location: "Mount Ogden Junior High",
+};
 
 // Helper to normalize "Last, First" -> "First Last"
 const normalizeTeamName = (name) => {
@@ -461,6 +463,20 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
   }
 
   return (
+    <div className="px-4 mt-4">
+    <div className="bg-jazz-paper rounded-xl border border-jazz-purple/20 p-4 shadow-sm">
+      <p className="text-xs font-bold uppercase tracking-wide text-jazz-purple">
+        Practice
+      </p>
+
+      <div className="mt-1 text-sm font-semibold text-jazz-black">
+        {PRACTICE.day}s · {PRACTICE.time}
+      </div>
+
+      <div className="mt-0.5 text-sm text-jazz-muted">
+        {PRACTICE.location}
+      </div>
+    </div>
     <div className="-mx-4 md:mx-0">
       <div className="flex justify-between items-center px-4 md:px-1 mb-4">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">
