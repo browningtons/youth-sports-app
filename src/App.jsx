@@ -644,16 +644,18 @@ const Header = ({ team, scrolled }) => (
      <div className="max-w-md mx-auto px-4 flex items-center justify-between">
     {/* LEFT: logo + text */}
     <div
-    className={`relative flex items-center justify-center rounded-full bg-white transition-all duration-300
-          ${scrolled ? "w-14 h-14 -translate-y-1" : "w-18 h-18 -translate-y-2"}
-          shadow-[0_6px_18px_rgba(0,0,0,0.15)]`}
-      >
-        <img
-          src={badgeLogo}
-          alt="Utah Jazz Basketball badge"
-          className="w-4/5 h-4/5 object-contain"
-        />
-      </div>
+      className={`relative flex items-center justify-center rounded-full bg-white
+        shadow-[0_6px_18px_rgba(0,0,0,0.15)]
+        transition-all duration-300
+        ${scrolled ? "w-14 h-14 -translate-y-1" : "w-18 h-18 -translate-y-2"}
+      `}
+    >
+      <img
+        src={badgeLogo}
+        alt="Utah Jazz Basketball badge"
+        className="w-4/5 h-4/5 object-contain"
+      />
+    </div>
       <div className="flex flex-col items-start">
         <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">
           {team.league}
