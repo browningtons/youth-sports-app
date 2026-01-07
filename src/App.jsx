@@ -650,13 +650,13 @@ const StandingsSection = ({ standings, teamName }) => (
 const Header = ({ team, scrolled }) => (
   <header
     className={
-      `sticky top-0 z-40 border-b transition-all duration-300 ` +
+      `sticky top-0 z-40 transition-all duration-300 ` +
       (scrolled
-        ? "bg-jazz-paper/90 backdrop-blur-md border-jazz-purple"
-        : "bg-jazz-paper border-jazz-purple")
+        ? "bg-jazz-paper/95 backdrop-blur-md"
+        : "bg-jazz-paper")
     }
   >
-    <div className={"max-w-md mx-auto " + (scrolled ? "pt-3" : "pt-4") + " pb-3"}>
+    <div className={"max-w-md mx-auto " + (scrolled ? "pt-2" : "pt-2") + " pb-3"}>
       {/* Logo spans full header width */}
       <div className="px-4">
         <img
@@ -670,7 +670,7 @@ const Header = ({ team, scrolled }) => (
       </div>
 
       {/* League name then Coach/Team name */}
-      <div className="mt-3 flex flex-col items-center text-center px-4">
+      <div className="mt-1 flex flex-col items-center text-center px-4">
         <p className="text-[11px] font-bold uppercase tracking-wider text-jazz-muted">
           {team.league}
         </p>
