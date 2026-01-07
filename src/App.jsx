@@ -639,8 +639,12 @@ const RosterSection = ({ players, isCoach, onUpdateRole }) => {
 };
 
 const StandingsSection = ({ standings, teamName }) => (
-  <div className="mb-6">
-    <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">Standings</h3>
+  <div className="mt-10 -mx-4 md:mx-0">
+    <div className="px-4 md:px-1 mb-4">
+      <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">
+        Standings
+      </h3>
+    </div>
     <Card className="overflow-hidden">
       <table className="w-full text-sm text-left">
         <thead className="bg-jazz-paper text-jazz-muted/80 font-medium">
@@ -667,7 +671,7 @@ const StandingsSection = ({ standings, teamName }) => (
         </tbody>
       </table>
       <div className="bg-jazz-paper p-3 text-center border-t border-jazz-muted/20">
-        <p className="text-xs text-jazz-muted/80">Regular Season • 2026 co-ed Jr Jazz Basketball</p>
+        <p className="text-xs text-jazz-muted/80">Regular Season • 2026 Ogden Jr Jazz</p>
       </div>
     </Card>
   </div>
