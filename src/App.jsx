@@ -79,7 +79,9 @@ const INITIAL_SCHEDULE = [
   { id: 5, date: 'Sat, Feb 14', time: '12:00 PM', opponent: 'Team Ross', location: 'Highland Junior High', isHome: false, status: 'upcoming', daysAway: 39, result: null },
   { id: 6, date: 'Sat, Feb 21', time: '12:00 PM', opponent: 'Team Smergut', location: 'James Madison', isHome: true, status: 'upcoming', daysAway: 46, result: null },
   { id: 7, date: 'Sat, Feb 28', time: '12:00 PM', opponent: 'Team Pearce', location: 'Highland Junior High', isHome: false, status: 'upcoming', daysAway: 53, result: null },
+  { id: 8, date: 'Sat, Mar 7', time: '12:00 PM', opponent: 'Team Reed', location: 'James Madison', isHome: true, status: 'upcoming', daysAway: 60, result: null }
 ];
+
 
 const INITIAL_ROSTER = [
   { id: 'p1', name: 'Graham', fullName: 'Graham Brown', number: 23, role: 'Lockdown' },
@@ -87,7 +89,7 @@ const INITIAL_ROSTER = [
   { id: 'p3', name: 'Vino', fullName: 'Vino Mendiola', number: 4, role: 'General' },
   { id: 'p4', name: 'Tyler', fullName: 'Tyler Moyer', number: 10, role: 'Energy' },
   { id: 'p5', name: 'Roman', fullName: 'Roman Padilla', number: 1, role: 'Rebounder' },
-  { id: 'p6', name: 'Justin', fullName: 'Justin Jr. rader', number: 33, role: 'Sniper' },
+  { id: 'p6', name: 'Justin', fullName: 'Justin Jr. Rader', number: 33, role: 'Sniper' },
   { id: 'p7', name: 'Benicio', fullName: 'Benicio Sotelo', number: 15, role: 'Spark' },
 ];
 
