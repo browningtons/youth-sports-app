@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import logo from "./assets/jazz-logo.png";
-import utahLogo from "./assets/utah-logo.png";
 
 import {
   Calendar,
@@ -11,7 +10,6 @@ import {
   Shield,
   Zap,
   Heart,
-  Edit2,
   Check,
   X,
   ChevronRight,
@@ -26,8 +24,7 @@ import {
   Filter,
   Target,
   Crown,
-  Activity,
-  BookOpen,
+  Activity
 } from "lucide-react";
 
 /**
@@ -1045,7 +1042,6 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
 export default function App() {
   const [isCoach, setIsCoach] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [weeklyFocus, setWeeklyFocus] = useState(INITIAL_FOCUS);
   const [schedule, setSchedule] = useState(INITIAL_SCHEDULE);
   const [teamData, setTeamData] = useState(INITIAL_TEAM_DATA);
   const [roster, setRoster] = useState(INITIAL_ROSTER);
