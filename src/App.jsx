@@ -65,7 +65,7 @@ const getAutomatedFocus = () => {
 const INITIAL_TEAM_DATA = {
   id: 't1',
   name: 'Team Brown', 
-  league: '2026 co-ed Jr Jazz Basketball',
+  league: '2026 Ogden Jr Jazz Basketball',
   season: 'Winter 2026',
   record: { w: 0, l: 0 },
   primaryColor: 'bg-jazz-purple-700',
@@ -664,7 +664,7 @@ const Header = ({ team, scrolled }) => (
           alt="Utah Jazz Basketball"
           className={
             "w-full object-contain " +
-            (scrolled ? "max-h-[64px]" : "max-h-[84px]")
+            (scrolled ? "max-h-[64px]" : "max-h-[96px]")
           }
         />
       </div>
@@ -676,7 +676,7 @@ const Header = ({ team, scrolled }) => (
         </p>
         <h1
           className={
-            "font-black leading-tight text-jazz-purple " +
+            "font-black leading-tight text-jazz-black " +
             (scrolled ? "text-2xl" : "text-3xl")
           }
         >
