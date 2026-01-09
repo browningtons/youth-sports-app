@@ -84,13 +84,15 @@ const INITIAL_SCHEDULE = [
 
 
 const INITIAL_ROSTER = [
-  { id: 'p1', name: 'Graham', fullName: 'Graham Brown', number: 23, role: 'Lockdown' },
+  { id: 'p1', name: 'Graham', fullName: 'Graham Brown', number: '00', role: 'Lockdown' },
   { id: 'p2', name: 'Ryan', fullName: 'Ryan Oliver Corbridge', number: 12, role: 'Hustle' },
   { id: 'p3', name: 'Vino', fullName: 'Vino Mendiola', number: 4, role: 'General' },
   { id: 'p4', name: 'Tyler', fullName: 'Tyler Moyer', number: 10, role: 'Energy' },
   { id: 'p5', name: 'Roman', fullName: 'Roman Padilla', number: 1, role: 'Rebounder' },
   { id: 'p6', name: 'Justin', fullName: 'Justin Jr. Rader', number: 33, role: 'Sniper' },
   { id: 'p7', name: 'Benicio', fullName: 'Benicio Sotelo', number: 15, role: 'Spark' },
+  { id: 'p8', name: 'Stella', fullName: 'Stella Zenger', number: 22, role: 'Defender' },
+  { id: 'p9', name: 'Dezmond', fullName: 'Dezmond Angel Yanez', number: 8, role: 'Playmaker' },
 ];
 
 const STANDINGS_DATA = [
