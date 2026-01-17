@@ -175,7 +175,7 @@ const hydrateSchedule = (games) => {
         };
       }
 
-      const diffDays = daysBetween(rawDate, today);
+      const diffDays = Math.ceil((rawDate - today) / (1000 * 60 * 60 * 24));
       const status =
         diffDays < 0 ? "completed" : g.result ? "completed" : "upcoming";
 
@@ -225,9 +225,12 @@ const processScheduleImport = (rows, myTeamName) => {
     const opponentFull = isHome ? row.away_team : row.home_team;
     const opponent = getTeamLastName(opponentFull);
     
-    // 4. Days Away Calc (calendar days)
-    const diffDays = daysBetween(dateObj, new Date());
-
+    // 4. Days Away Calc
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const diffTime = dateObj - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
     return {
       id: `imp-${Date.now()}-${index}`,
       date: dateStr,
@@ -560,7 +563,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
                       ? "Pending"
                       : game.daysAway === 0
                       ? "Today!"
-                      : `${game.daysAway} day${game.daysAway === 1 ? "" : "s"}`}
+                      : `${game.daysAway} days`}
                   </span>
                 )}
               </div>
@@ -1120,17 +1123,6 @@ export default function App() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-  // Recompute countdown on load (and refresh daily if user leaves tab open)
-  setSchedule((prev) => hydrateSchedule(prev));
-
-  const interval = setInterval(() => {
-    setSchedule((prev) => hydrateSchedule(prev));
-  }, 60 * 60 * 1000); // hourly refresh
-
-  return () => clearInterval(interval);
   }, []);
 
   const handleScheduleImport = (rows, selectedTeamName) => {
