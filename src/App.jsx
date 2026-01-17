@@ -175,7 +175,7 @@ const hydrateSchedule = (games) => {
         };
       }
 
-      const diffDays = Math.ceil((rawDate - today) / (1000 * 60 * 60 * 24));
+      const diffDays = daysBetween(rawDate, today);
       const status =
         diffDays < 0 ? "completed" : g.result ? "completed" : "upcoming";
 
@@ -225,12 +225,9 @@ const processScheduleImport = (rows, myTeamName) => {
     const opponentFull = isHome ? row.away_team : row.home_team;
     const opponent = getTeamLastName(opponentFull);
     
-    // 4. Days Away Calc
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    const diffTime = dateObj - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+    // 4. Days Away Calc (calendar days)
+    const diffDays = daysBetween(dateObj, new Date());
+
     return {
       id: `imp-${Date.now()}-${index}`,
       date: dateStr,
@@ -563,7 +560,7 @@ const ScheduleSection = ({ schedule, isCoach, onUpdateResult }) => {
                       ? "Pending"
                       : game.daysAway === 0
                       ? "Today!"
-                      : `${game.daysAway} days`}
+                      : `${game.daysAway} day${game.daysAway === 1 ? "" : "s"}`}
                   </span>
                 )}
               </div>
