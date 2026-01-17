@@ -135,6 +135,65 @@ const normalizeTeamName = (name) => {
   return cleanName;
 };
 
+
+const startOfToday = () => {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+};
+
+const parseGameDateTime = (game) => {
+  // If we already have a raw Date (imported schedule), use it
+  if (game.rawDate instanceof Date) return game.rawDate;
+
+  // Otherwise parse your hardcoded strings like: "Sat, Jan 17" + "11:00 AM"
+  // Assume 2026 season; if you ever change seasons, update this.
+  const year = 2026;
+
+  // Build a parseable string: "Jan 17 2026 11:00 AM"
+  const datePart = game.date.split(",")[1]?.trim() || game.date; // "Jan 17"
+  const str = `${datePart} ${year} ${game.time}`;
+  const dt = new Date(str);
+
+  // Fallback: if parsing fails, return null
+  return isNaN(dt.getTime()) ? null : dt;
+};
+
+const hydrateSchedule = (games) => {
+  const today = startOfToday();
+
+  return games
+    .map((g) => {
+      const rawDate = parseGameDateTime(g);
+
+      if (!rawDate) {
+        return {
+          ...g,
+          rawDate: g.rawDate ?? null,
+          daysAway: null,
+          status: g.status ?? "upcoming",
+        };
+      }
+
+      const diffDays = Math.ceil((rawDate - today) / (1000 * 60 * 60 * 24));
+      const status =
+        diffDays < 0 ? "completed" : g.result ? "completed" : "upcoming";
+
+      return {
+        ...g,
+        rawDate,
+        daysAway: diffDays,
+        status,
+      };
+    })
+    .sort((a, b) => {
+      const ad = a.rawDate instanceof Date ? a.rawDate.getTime() : Infinity;
+      const bd = b.rawDate instanceof Date ? b.rawDate.getTime() : Infinity;
+      return ad - bd;
+    });
+};
+
+
 // Helper to extract Last Name for team display (e.g. "Paul Brown" -> "Team Brown")
 const getTeamLastName = (fullName) => {
   if (!fullName) return 'Unknown';
@@ -1054,7 +1113,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
 export default function App() {
   const [isCoach, setIsCoach] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [schedule, setSchedule] = useState(INITIAL_SCHEDULE);
+  const [schedule, setSchedule] = useState(() => hydrateSchedule(INITIAL_SCHEDULE));
   const [teamData, setTeamData] = useState(INITIAL_TEAM_DATA);
   const [roster, setRoster] = useState(INITIAL_ROSTER);
   
@@ -1064,6 +1123,17 @@ export default function App() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+  // Recompute countdown on load (and refresh daily if user leaves tab open)
+  setSchedule((prev) => hydrateSchedule(prev));
+
+  const interval = setInterval(() => {
+    setSchedule((prev) => hydrateSchedule(prev));
+  }, 60 * 60 * 1000); // hourly refresh
+
+  return () => clearInterval(interval);
   }, []);
 
   const handleScheduleImport = (rows, selectedTeamName) => {
