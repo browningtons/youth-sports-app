@@ -21,7 +21,6 @@ import {
   Download,
   AlertTriangle,
   Loader,
-  Filter,
   Target,
   Crown,
   Activity
@@ -248,13 +247,7 @@ const getTeamLastName = (fullName) => {
 
 // Converts CSV rows into App Game Objects
 const processScheduleImport = (rows, myTeamName) => {
-  // 0. Filter for MY games only
-  const myGames = rows.filter(row => 
-    (row.home_team && row.home_team.toLowerCase().includes(myTeamName.toLowerCase())) ||
-    (row.away_team && row.away_team.toLowerCase().includes(myTeamName.toLowerCase()))
-  );
-
-  const processed = myGames.map((row, index) => {
+  const processed = rows.map((row, index) => {
     // 1. Parse Date (YYYY-MM-DD) and Time (HH:MM)
     const [year, month, day] = row.date.split('-').map(Number);
     const [hour, minute] = row.start_time.split(':').map(Number);
@@ -265,8 +258,10 @@ const processScheduleImport = (rows, myTeamName) => {
     const timeStr = dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
     
     // 3. Logic: Home vs Away
-    const isHome = row.home_team.toLowerCase().includes(myTeamName.toLowerCase());
-    // Get opponent name based on LAST name of the coach
+    const normalizedTeamName = myTeamName?.toLowerCase() ?? '';
+    const isHome = normalizedTeamName
+      ? row.home_team.toLowerCase().includes(normalizedTeamName)
+      : false;
     const opponentFull = isHome ? row.away_team : row.home_team;
     const opponent = getTeamLastName(opponentFull);
     
@@ -837,8 +832,6 @@ const CSVWizard = ({ onImport, type, onClose }) => {
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [validationResults, setValidationResults] = useState(null);
-  const [uniqueTeams, setUniqueTeams] = useState([]);
-  const [selectedTeam, setSelectedTeam] = useState('');
   const inputRef = useRef(null);
 
   const handleFile = (selectedFile) => {
@@ -871,18 +864,6 @@ const CSVWizard = ({ onImport, type, onClose }) => {
             errors: [],
             warnings: []
           };
-
-          // Extract Unique Teams if this is a Schedule upload
-          if (type === 'Schedule') {
-            const allTeams = new Set();
-            rows.forEach(r => {
-              if (r.home_team) allTeams.add(r.home_team);
-              if (r.away_team) allTeams.add(r.away_team);
-            });
-            const sortedTeams = Array.from(allTeams).sort();
-            setUniqueTeams(sortedTeams);
-            if (sortedTeams.length > 0) setSelectedTeam(sortedTeams[0]);
-          }
 
           rows.forEach((row, idx) => {
             const { errors, warnings } = validateScheduleRow(row, idx);
@@ -929,7 +910,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
 
   const finishImport = () => {
     if (validationResults?.validRows) {
-      onImport(validationResults.validRows, selectedTeam);
+      onImport(validationResults.validRows);
     }
     setStep('success');
   };
@@ -986,34 +967,6 @@ const CSVWizard = ({ onImport, type, onClose }) => {
       {step === 'results' && validationResults && (
         <div className="animate-in fade-in zoom-in duration-300">
           
-          {/* TEAM SELECTOR - NEW */}
-          {type === 'Schedule' && uniqueTeams.length > 0 && (
-             <div className="mb-6 bg-jazz-purple-50 border border-jazz-purple/20 p-4 rounded-xl">
-               <div className="flex items-start gap-3">
-                 <div className="bg-jazz-paper p-2 rounded-lg text-jazz-purple shadow-sm mt-1">
-                   <Filter size={20} />
-                 </div>
-                 <div className="flex-1">
-                   <label className="block text-sm font-bold text-jazz-purple mb-1">
-                     Which team are you coaching?
-                   </label>
-                   <p className="text-xs text-jazz-purple mb-2">
-                     We found {uniqueTeams.length} teams. Select yours to filter the dashboard.
-                   </p>
-                   <select 
-                     value={selectedTeam}
-                     onChange={(e) => setSelectedTeam(e.target.value)}
-                     className="w-full p-2 rounded-lg border border-jazz-purple/25 text-sm font-medium text-jazz-black/80 focus:outline-none focus:ring-2 focus:ring-jazz-purple/40"
-                   >
-                     {uniqueTeams.map(t => (
-                       <option key={t} value={t}>{t}</option>
-                     ))}
-                   </select>
-                 </div>
-               </div>
-             </div>
-          )}
-
           <div className="flex gap-4 mb-6">
             <div className="flex-1 bg-jazz-paper p-3 rounded-lg border border-jazz-muted/20 text-center">
               <p className="text-xs text-jazz-muted/80 uppercase font-bold">Total Rows</p>
@@ -1104,9 +1057,9 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
 
   if (!isCoach) return null;
 
-  const handleImport = (data, selectedTeam) => {
+  const handleImport = (data) => {
     if (activeWizard === 'Schedule') {
-      onImportSchedule(data, selectedTeam);
+      onImportSchedule(data);
     }
   };
 
@@ -1170,18 +1123,8 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleScheduleImport = (rows, selectedTeamName) => {
-    // 1. Update the Team Name based on coach last name
-    if (selectedTeamName) {
-      const lastName = getTeamLastName(selectedTeamName);
-      setTeamData(prev => ({ 
-        ...prev, 
-        name: lastName
-      }));
-    }
-
-    // 2. Process the validated CSV rows into app-ready data, filtered by team
-    const newSchedule = processScheduleImport(rows, selectedTeamName || "Hornets");
+  const handleScheduleImport = (rows) => {
+    const newSchedule = processScheduleImport(rows, teamData.name);
     setSchedule(newSchedule);
   };
 
