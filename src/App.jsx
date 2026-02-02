@@ -1109,7 +1109,7 @@ const AdminTools = ({ isCoach, onImportSchedule }) => {
 };
 
 export default function App() {
-  const [isCoach, setIsCoach] = useState(false);
+  const isCoach = false;
   const [scrolled, setScrolled] = useState(false);
   const [schedule, setSchedule] = useState(() => hydrateSchedule(INITIAL_SCHEDULE));
   const [teamData, setTeamData] = useState(INITIAL_TEAM_DATA);
@@ -1188,22 +1188,6 @@ export default function App() {
           </div>
         </main>
 
-        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-jazz-black/90 backdrop-blur-md text-jazz-paper p-1.5 rounded-full shadow-2xl flex items-center space-x-2 border border-jazz-black/25/50">
-            <button 
-              onClick={() => setIsCoach(false)}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${!isCoach ? 'bg-jazz-paper text-jazz-black shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
-            >
-              Parent
-            </button>
-            <button 
-              onClick={() => setIsCoach(true)}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${isCoach ? 'bg-jazz-purple-600 text-jazz-paper shadow-md' : 'text-jazz-muted/80 hover:text-jazz-paper'}`}
-            >
-              Coach
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
