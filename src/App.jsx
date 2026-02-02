@@ -162,6 +162,14 @@ const parseGameDateTime = (game) => {
 const hydrateSchedule = (games) => {
   const today = startOfToday();
 
+  const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+  const startOfDay = (d) => {
+    const x = new Date(d);
+    x.setHours(0, 0, 0, 0);
+    return x;
+  };
+
   return games
     .map((g) => {
       const rawDate = parseGameDateTime(g);
@@ -175,9 +183,11 @@ const hydrateSchedule = (games) => {
         };
       }
 
-      const diffDays = Math.ceil((rawDate - today) / (1000 * 60 * 60 * 24));
-      const status =
-        diffDays < 0 ? "completed" : g.result ? "completed" : "upcoming";
+      // ✅ calendar-day diff (no time-of-day bleed)
+      const gameDay = startOfDay(rawDate);
+      const diffDays = Math.round((gameDay.getTime() - today.getTime()) / MS_PER_DAY);
+
+      const status = diffDays < 0 || g.result ? "completed" : "upcoming";
 
       return {
         ...g,
