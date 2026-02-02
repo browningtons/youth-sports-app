@@ -57,9 +57,6 @@ const getAutomatedFocus = () => {
   return FOCUS_LIBRARY[index];
 };
 
-/**
- * MOCK DATA
- */
 const INITIAL_TEAM_DATA = {
   id: 't1',
   name: 'Team Brown', 
@@ -72,14 +69,51 @@ const INITIAL_TEAM_DATA = {
 
 // Default schedule populated from "Brown, Paul" in the attached CSV
 const INITIAL_SCHEDULE = [
-  { id: 1, date: 'Sat, Jan 17', time: '11:00 AM', opponent: 'Team Reed', location: 'Mount Ogden Junior High', isHome: false, status: 'upcoming', daysAway: 11, result: null },
-  { id: 2, date: 'Sat, Jan 24', time: '11:00 AM', opponent: 'Team Oliver', location: 'James Madison', isHome: true, status: 'upcoming', daysAway: 18, result: null },
-  { id: 3, date: 'Sat, Jan 31', time: '11:00 AM', opponent: 'Team Wood', location: 'Highland Junior High', isHome: false, status: 'upcoming', daysAway: 25, result: null },
-  { id: 4, date: 'Sat, Feb 07', time: '11:00 AM', opponent: 'Team Reza', location: 'Highland Junior High', isHome: true, status: 'upcoming', daysAway: 32, result: null },
-  { id: 5, date: 'Sat, Feb 14', time: '12:00 PM', opponent: 'Team Ross', location: 'Highland Junior High', isHome: false, status: 'upcoming', daysAway: 39, result: null },
-  { id: 6, date: 'Sat, Feb 21', time: '12:00 PM', opponent: 'Team Smergut', location: 'James Madison', isHome: true, status: 'upcoming', daysAway: 46, result: null },
-  { id: 7, date: 'Sat, Feb 28', time: '12:00 PM', opponent: 'Team Pearce', location: 'Highland Junior High', isHome: false, status: 'upcoming', daysAway: 53, result: null },
-  { id: 8, date: 'Sat, Mar 7', time: '12:00 PM', opponent: 'Team Reed', location: 'James Madison', isHome: true, status: 'upcoming', daysAway: 60, result: null }
+  // Week 1 — Loss (Brown 23, Reed 27)
+  {
+    id: 1,
+    date: "Sat, Jan 17",
+    time: "11:00 AM",
+    opponent: "Team Reed",
+    location: "Mount Ogden Junior High",
+    isHome: false,
+    result: "L",
+    teamScore: 23,
+    oppScore: 27,
+  },
+
+  // Week 2 — Loss (Brown 8, Oliver 35)
+  {
+    id: 2,
+    date: "Sat, Jan 24",
+    time: "11:00 AM",
+    opponent: "Team Oliver",
+    location: "James Madison",
+    isHome: true,
+    result: "L",
+    teamScore: 8,
+    oppScore: 35,
+  },
+
+  // Week 3 — Win (Brown 47, Wood 20)
+  {
+    id: 3,
+    date: "Sat, Jan 31",
+    time: "11:00 AM",
+    opponent: "Team Wood",
+    location: "Highland Junior High",
+    isHome: false,
+    result: "W",
+    teamScore: 47,
+    oppScore: 20,
+  },
+
+  // Remaining games — upcoming (scores unknown)
+  { id: 4, date: "Sat, Feb 07", time: "11:00 AM", opponent: "Team Reza",   location: "Highland Junior High", isHome: true,  result: null, teamScore: null, oppScore: null },
+  { id: 5, date: "Sat, Feb 14", time: "12:00 PM", opponent: "Team Ross",   location: "Highland Junior High", isHome: false, result: null, teamScore: null, oppScore: null },
+  { id: 6, date: "Sat, Feb 21", time: "12:00 PM", opponent: "Team Smergut",location: "James Madison",        isHome: true,  result: null, teamScore: null, oppScore: null },
+  { id: 7, date: "Sat, Feb 28", time: "12:00 PM", opponent: "Team Pearce", location: "Highland Junior High", isHome: false, result: null, teamScore: null, oppScore: null },
+  { id: 8, date: "Sat, Mar 7",  time: "12:00 PM", opponent: "Team Reed",   location: "James Madison",        isHome: true,  result: null, teamScore: null, oppScore: null },
 ];
 
 
@@ -96,15 +130,16 @@ const INITIAL_ROSTER = [
 ];
 
 const STANDINGS_DATA = [
-  { rank: 1, name: 'Team Smergut', w: 0, l: 0, pct: '.000' },
-  { rank: 2, name: 'Team Oliver', w: 0, l: 0, pct: '.000' },
-  { rank: 3, name: 'Team Reed', w: 0, l: 0, pct: '.000' },
-  { rank: 4, name: 'Team Brown', w: 0, l: 0, pct: '.000' },
-  { rank: 5, name: 'Team Wood', w: 0, l: 0, pct: '.000' },
-  { rank: 6, name: 'Team Ross', w: 0, l: 0, pct: '.000' },
-  { rank: 7, name: 'Team Pearce', w: 0, l: 0, pct: '.000' },
-  { rank: 8, name: 'Team Reza', w: 0, l: 0, pct: '.000' },
+  { rank: 1, name: "Team Oliver", w: 3, l: 0, pct: "1.000" },
+  { rank: 2, name: "Team Reed",   w: 3, l: 0, pct: "1.000" },
+  { rank: 3, name: "Team Reza",   w: 2, l: 1, pct: ".667" },
+  { rank: 4, name: "Team Ross",   w: 2, l: 1, pct: ".667" },
+  { rank: 5, name: "Team Brown",  w: 1, l: 2, pct: ".333" },
+  { rank: 6, name: "Team Wood",   w: 1, l: 2, pct: ".333" },
+  { rank: 7, name: "Team Pearce", w: 0, l: 3, pct: ".000" },
+  { rank: 8, name: "Team Smergut",w: 0, l: 3, pct: ".000" },
 ];
+
 
 const INITIAL_FOCUS = getAutomatedFocus();
 
@@ -187,7 +222,7 @@ const hydrateSchedule = (games) => {
       const gameDay = startOfDay(rawDate);
       const diffDays = Math.round((gameDay.getTime() - today.getTime()) / MS_PER_DAY);
 
-      const status = diffDays < 0 || g.result ? "completed" : "upcoming";
+      const status = g.result ? "completed" : diffDays < 0 ? "completed" : "upcoming";
 
       return {
         ...g,
