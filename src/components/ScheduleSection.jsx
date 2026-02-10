@@ -92,6 +92,7 @@ export default function ScheduleSection({ schedule }) {
                     <p className="text-xs text-jazz-muted">
                       {game.date} • {game.time}
                     </p>
+                    <p className="text-[11px] text-jazz-muted/85 truncate">{game.location}</p>
                   </div>
                   <Badge type={game.result === 'W' ? 'win' : 'loss'}>{countdownLabel(game)}</Badge>
                 </div>
@@ -113,6 +114,7 @@ export default function ScheduleSection({ schedule }) {
                     <p className="text-xs text-jazz-muted">
                       {game.date} • {game.time}
                     </p>
+                    <p className="text-[11px] text-jazz-muted/85 truncate">{game.location}</p>
                   </div>
                   <span className="text-xs font-semibold text-jazz-muted">{countdownLabel(game)}</span>
                 </div>
