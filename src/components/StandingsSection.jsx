@@ -2,7 +2,7 @@ import Card from './ui/Card';
 
 export default function StandingsSection({ standings, teamName }) {
   return (
-    <div className="mt-10 -mx-4 md:mx-0">
+    <div className="-mx-4 md:mx-0">
       <div className="px-4 md:px-1 mb-4">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">Standings</h3>
       </div>
