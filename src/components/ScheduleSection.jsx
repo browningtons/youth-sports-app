@@ -41,6 +41,28 @@ export default function ScheduleSection({ schedule }) {
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">Schedule</h3>
       </div>
       <div className="flex flex-col gap-3 px-4 md:px-0">
+        {pastGames.length > 0 && (
+          <details className="rounded-xl border border-jazz-muted/20 bg-jazz-paper/40">
+            <summary className="list-none cursor-pointer px-3 py-2.5 text-xs font-bold uppercase tracking-wide text-jazz-muted">
+              Past Games ({pastGames.length})
+            </summary>
+            <div className="px-2 pb-2 space-y-2 opacity-75">
+              {pastGames.map((game) => (
+                <div key={game.id} className={compactGameClass}>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-jazz-black truncate">{game.opponent}</p>
+                    <p className="text-xs text-jazz-muted">
+                      {game.date} • {game.time}
+                    </p>
+                    <p className="text-[11px] text-jazz-muted/85 truncate">{game.location}</p>
+                  </div>
+                  <Badge type={game.result === 'W' ? 'win' : 'loss'}>{countdownLabel(game)}</Badge>
+                </div>
+              ))}
+            </div>
+          </details>
+        )}
+
         <Card key={featuredGame.id} className="relative">
           <div className="p-4">
             <div className="flex justify-between items-center mb-3">
@@ -78,28 +100,6 @@ export default function ScheduleSection({ schedule }) {
             </div>
           </div>
         </Card>
-
-        {pastGames.length > 0 && (
-          <details className="rounded-xl border border-jazz-muted/20 bg-jazz-paper/40">
-            <summary className="list-none cursor-pointer px-3 py-2.5 text-xs font-bold uppercase tracking-wide text-jazz-muted">
-              Past Games ({pastGames.length})
-            </summary>
-            <div className="px-2 pb-2 space-y-2 opacity-75">
-              {pastGames.map((game) => (
-                <div key={game.id} className={compactGameClass}>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-jazz-black truncate">{game.opponent}</p>
-                    <p className="text-xs text-jazz-muted">
-                      {game.date} • {game.time}
-                    </p>
-                    <p className="text-[11px] text-jazz-muted/85 truncate">{game.location}</p>
-                  </div>
-                  <Badge type={game.result === 'W' ? 'win' : 'loss'}>{countdownLabel(game)}</Badge>
-                </div>
-              ))}
-            </div>
-          </details>
-        )}
 
         {futureGames.length > 0 && (
           <details className="rounded-xl border border-jazz-muted/20 bg-jazz-paper/50">
