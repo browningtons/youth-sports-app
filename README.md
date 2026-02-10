@@ -1,16 +1,50 @@
-# React + Vite
+# Youth Sports App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Team dashboard for a youth basketball season, built with React + Vite + Tailwind CSS.
 
-Currently, two official plugins are available:
+## What It Does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Shows schedule, standings, roster, and weekly focus.
+- Calculates team record from game outcomes.
+- Uses a mobile-first card UI styled with Tailwind.
 
-## React Compiler
+## Local Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install dependencies:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Start development server:
+
+```bash
+npm run dev
+```
+
+3. Open the URL printed by Vite (usually `http://localhost:5173`).
+
+## Scripts
+
+- `npm run dev`: start local dev server with HMR.
+- `npm run build`: production build into `dist/`.
+- `npm run preview`: preview production build locally.
+- `npm run lint`: run ESLint checks.
+
+## Project Structure
+
+- `src/App.jsx`: top-level app state and orchestration.
+- `src/components/`: UI sections and reusable visual components.
+- `src/components/ui/`: low-level primitives (`Card`, `Badge`).
+- `src/data/constants.js`: app seed data and static configuration.
+- `src/lib/`: schedule helpers.
+- `src/assets/`: team graphics.
+
+## Quality Checks
+
+Run before committing:
+
+```bash
+npm run lint
+npm run build
+```
