@@ -61,7 +61,7 @@ const INITIAL_TEAM_DATA = {
   name: 'Team Brown', 
   league: '2026 Ogden Jr Jazz League',
   season: 'Winter 2026',
-  record: { w: 0, l: 0 },
+  record: { w: 1, l: 3 },
   primaryColor: 'bg-jazz-purple-700',
   secondaryColor: 'bg-jazz-purple-50',
 };
@@ -108,7 +108,8 @@ const INITIAL_SCHEDULE = [
   },
 
   // Remaining games — upcoming (scores unknown)
-  { id: 4, date: "Sat, Feb 07", time: "11:00 AM", opponent: "Team Reza",   location: "Highland Junior High", isHome: true,  result: null, teamScore: null, oppScore: null },
+  // Week 4 — Loss (Brown 18, Reza 41)
+  { id: 4, date: "Sat, Feb 07", time: "11:00 AM", opponent: "Team Reza",   location: "Highland Junior High", isHome: true,  result: "L", teamScore: 18, oppScore: 41 },
   { id: 5, date: "Sat, Feb 14", time: "12:00 PM", opponent: "Team Ross",   location: "Highland Junior High", isHome: false, result: null, teamScore: null, oppScore: null },
   { id: 6, date: "Sat, Feb 21", time: "12:00 PM", opponent: "Team Smergut",location: "James Madison",        isHome: true,  result: null, teamScore: null, oppScore: null },
   { id: 7, date: "Sat, Feb 28", time: "12:00 PM", opponent: "Team Pearce", location: "Highland Junior High", isHome: false, result: null, teamScore: null, oppScore: null },
@@ -119,24 +120,24 @@ const INITIAL_SCHEDULE = [
 const INITIAL_ROSTER = [
   { id: 'p1', name: 'Graham', fullName: 'Graham Brown', number: '00', role: 'Playmaker' },
   { id: 'p2', name: 'Ryan', fullName: 'Ryan Oliver Corbridge', number: 12, role: 'Hustle' },
-  { id: 'p3', name: 'Vino', fullName: 'Vino Mendiola', number: 4, role: 'Lockdown' },
+  { id: 'p3', name: 'Vino', fullName: 'Vino Mendiola', number: 32, role: 'Lockdown' },
   { id: 'p4', name: 'Tyler', fullName: 'Tyler Moyer', number: 5, role: 'Spark' },
   { id: 'p5', name: 'Roman', fullName: 'Roman Padilla', number: 14, role: 'Energy' },
-  { id: 'p6', name: 'Justin', fullName: 'Justin Jr. Rader', number: 33, role: 'Sniper' },
+  { id: 'p6', name: 'Justin', fullName: 'Justin Jr. Rader', number: 32, role: 'Sniper' },
   { id: 'p7', name: 'Benicio', fullName: 'Benicio Sotelo', number: 15, role: 'General' },
   { id: 'p8', name: 'Stella', fullName: 'Stella Zenger', number: 3, role: 'Defender' },
   { id: 'p9', name: 'Dezmond', fullName: 'Dezmond Angel Yanez', number: 13, role: 'Anchor' },
 ];
 
 const STANDINGS_DATA = [
-  { rank: 1, name: "Team Oliver", w: 3, l: 0, pct: "1.000" },
-  { rank: 2, name: "Team Reed",   w: 3, l: 0, pct: "1.000" },
-  { rank: 3, name: "Team Reza",   w: 2, l: 1, pct: ".667" },
-  { rank: 4, name: "Team Ross",   w: 2, l: 1, pct: ".667" },
-  { rank: 5, name: "Team Brown",  w: 1, l: 2, pct: ".333" },
-  { rank: 6, name: "Team Wood",   w: 1, l: 2, pct: ".333" },
-  { rank: 7, name: "Team Pearce", w: 0, l: 3, pct: ".000" },
-  { rank: 8, name: "Team Smergut",w: 0, l: 3, pct: ".000" },
+  { rank: 1, name: "Team Oliver",  w: 4, l: 0, pct: "1.000" },
+  { rank: 2, name: "Team Reed",    w: 4, l: 0, pct: "1.000" },
+  { rank: 3, name: "Team Reza",    w: 3, l: 1, pct: ".750" },
+  { rank: 4, name: "Team Ross",    w: 2, l: 2, pct: ".500" },
+  { rank: 5, name: "Team Brown",   w: 1, l: 3, pct: ".250" },
+  { rank: 6, name: "Team Smergut", w: 1, l: 3, pct: ".250" },
+  { rank: 7, name: "Team Wood",    w: 1, l: 3, pct: ".250" },
+  { rank: 8, name: "Team Pearce",  w: 0, l: 4, pct: ".000" },
 ];
 
 
