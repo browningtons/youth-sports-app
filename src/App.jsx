@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import logo from "./assets/jazz-logo.png";
+import utahLogo from "./assets/utah-logo.png";
 
 import {
   Calendar,
@@ -23,7 +24,9 @@ import {
   Loader,
   Target,
   Crown,
-  Activity
+  Activity,
+  Edit2,
+  BookOpen
 } from "lucide-react";
 
 /**
@@ -238,6 +241,16 @@ const hydrateSchedule = (games) => {
     });
 };
 
+const calculateRecord = (games = []) =>
+  games.reduce(
+    (record, game) => {
+      if (game.result === "W") record.w += 1;
+      if (game.result === "L") record.l += 1;
+      return record;
+    },
+    { w: 0, l: 0 }
+  );
+
 
 // Helper to extract Last Name for team display (e.g. "Paul Brown" -> "Team Brown")
 const getTeamLastName = (fullName) => {
@@ -293,9 +306,7 @@ const processScheduleImport = (rows, myTeamName) => {
 const validateScheduleRow = (row, index) => {
   const errors = [];
   const warnings = [];
-  
-  const requiredCols = ['week', 'date', 'start_time', 'location', 'home_team', 'away_team'];
-  
+
   if (!row.week || isNaN(row.week) || row.week < 1 || row.week > 30) {
     errors.push(`Row ${index + 1}: 'week' must be a number between 1 and 30.`);
   }
@@ -358,7 +369,7 @@ const parseCSV = (text) => {
     throw new Error(`Missing columns: ${missingHeaders.join(', ')}. Please use the template.`);
   }
 
-  return lines.slice(1).map((line, idx) => {
+  return lines.slice(1).map((line) => {
     const values = parseCSVLine(line);
     const row = {};
     headers.forEach((h, i) => {
@@ -412,13 +423,12 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
   const [tempQuote, setTempQuote] = useState(focus.quote);
   const [tempNote, setTempNote] = useState(focus.note || "");
 
-  useEffect(() => {
-    if (!isEditing) {
-      setTempTopic(focus.topic);
-      setTempQuote(focus.quote);
-      setTempNote(focus.note || "");
-    }
-  }, [focus, isEditing]);
+  const startEditing = () => {
+    setTempTopic(focus.topic);
+    setTempQuote(focus.quote);
+    setTempNote(focus.note || "");
+    setIsEditing(true);
+  };
 
   const handleSave = () => {
     onSave({ topic: tempTopic, quote: tempQuote, note: tempNote });
@@ -441,7 +451,7 @@ const WeeklyFocus = ({ focus, isCoach, onSave }) => {
 
         {isCoach && !isEditing && (
           <button
-            onClick={() => setIsEditing(true)}
+            onClick={startEditing}
             className="text-yellow-600 text-xs font-semibold flex items-center hover:bg-yellow-50 px-2 py-1 rounded-full transition-colors"
           >
             <Edit2 size={12} className="mr-1" /> Edit
@@ -830,14 +840,16 @@ const Header = ({ team, scrolled, schedule }) => (
 
 const CSVWizard = ({ onImport, type, onClose }) => {
   const [step, setStep] = useState('upload'); // upload, validating, results, success
-  const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [validationResults, setValidationResults] = useState(null);
   const inputRef = useRef(null);
 
   const handleFile = (selectedFile) => {
-    if (selectedFile && selectedFile.type === "text/csv") {
-      setFile(selectedFile);
+    const csvMimeTypes = ["text/csv", "application/csv", "application/vnd.ms-excel"];
+    const isCsvByMime = csvMimeTypes.includes(selectedFile?.type);
+    const isCsvByName = selectedFile?.name?.toLowerCase().endsWith(".csv");
+
+    if (selectedFile && (isCsvByMime || isCsvByName)) {
       processFile(selectedFile);
     } else {
       alert("Please upload a .csv file");
@@ -883,7 +895,6 @@ const CSVWizard = ({ onImport, type, onClose }) => {
         } catch (err) {
           alert(err.message);
           setStep('upload');
-          setFile(null);
         }
       }, 1500);
     };
@@ -997,7 +1008,7 @@ const CSVWizard = ({ onImport, type, onClose }) => {
                 ))}
               </ul>
               <div className="mt-4 text-center">
-                 <button onClick={() => {setStep('upload'); setFile(null);}} className="text-sm font-bold text-red-700 hover:underline">
+                 <button onClick={() => {setStep('upload');}} className="text-sm font-bold text-red-700 hover:underline">
                    Upload corrected file
                  </button>
               </div>
@@ -1115,6 +1126,7 @@ export default function App() {
   const [schedule, setSchedule] = useState(() => hydrateSchedule(INITIAL_SCHEDULE));
   const [teamData, setTeamData] = useState(INITIAL_TEAM_DATA);
   const [roster, setRoster] = useState(INITIAL_ROSTER);
+  const [weeklyFocus, setWeeklyFocus] = useState(INITIAL_FOCUS);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -1136,19 +1148,6 @@ export default function App() {
       }
       return game;
     }));
-    
-    // Update Record (Simplified calc for demo)
-    if (result) {
-      setTeamData(prev => {
-        const newRecord = { ...prev.record };
-        if (result === 'W') newRecord.w += 1;
-        if (result === 'L') newRecord.l += 1;
-        return { ...prev, record: newRecord };
-      });
-    } else {
-        // If undoing, logic would be complex without history, 
-        // effectively resetting record in this simple mock
-    }
   };
 
   const handleUpdateRole = (playerId, newRole) => {
@@ -1157,9 +1156,11 @@ export default function App() {
     ));
   };
 
+  const teamRecord = calculateRecord(schedule);
+
   return (
     <div className="min-h-screen bg-jazz-paper pb-24 font-sans text-jazz-black selection:bg-yellow-200">
-      <Header team={teamData} scrolled={scrolled} schedule={schedule} />
+      <Header team={{ ...teamData, record: teamRecord }} scrolled={scrolled} schedule={schedule} />
 
       <div className="bg-jazz-muted/10">
 
@@ -1170,6 +1171,8 @@ export default function App() {
             isCoach={isCoach} 
             onUpdateResult={handleUpdateResult}
           />
+
+          <WeeklyFocus focus={weeklyFocus} isCoach={isCoach} onSave={setWeeklyFocus} />
 
           <div className="grid grid-cols-1 gap-6">
             <StandingsSection standings={STANDINGS_DATA} teamName={teamData.name} />
