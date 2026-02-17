@@ -11,7 +11,7 @@ export default function SeasonInsights({ results, teamName }) {
       <div className="px-4 md:px-1 mb-4">
         <h3 className="text-sm font-black text-jazz-black uppercase tracking-wider text-left">Season Insights</h3>
         <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-jazz-muted">
-          Based on Weeks 1-4 ({insights.gamesAnalyzed} games)
+          Based on Weeks {insights.weekRange.start}-{insights.weekRange.end} ({insights.gamesAnalyzed} games)
         </p>
       </div>
 
@@ -68,9 +68,9 @@ export default function SeasonInsights({ results, teamName }) {
           <p className="mt-2 text-xs text-jazz-muted">
             Opponent combined record: <span className="font-bold text-jazz-black">{insights.team.opponentRecord}</span>
           </p>
-          <div className="mt-2 grid grid-cols-4 gap-2">
+          <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
             {insights.team.trend.map((entry) => (
-              <div key={entry.week} className="rounded-lg border border-jazz-muted/20 p-2 text-center">
+              <div key={entry.week} className="min-w-[58px] rounded-lg border border-jazz-muted/20 p-2 text-center">
                 <p className="text-[10px] uppercase font-bold text-jazz-muted">Wk {entry.week}</p>
                 <p className="text-base font-black text-jazz-black">{entry.scored}</p>
               </div>

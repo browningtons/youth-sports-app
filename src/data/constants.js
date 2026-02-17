@@ -106,7 +106,7 @@ export const STANDINGS_DATA = [
   { rank: 8, name: 'Team Pearce', w: 0, l: 5, pct: '.000' },
 ];
 
-export const LEAGUE_RESULTS_WEEKS_1_TO_4 = [
+export const LEAGUE_RESULTS_WEEKS_1_TO_5 = [
   { week: 1, homeTeam: 'Team Smergut', awayTeam: 'Team Oliver', homeScore: 14, awayScore: 55 },
   { week: 1, homeTeam: 'Team Reed', awayTeam: 'Team Brown', homeScore: 27, awayScore: 23 },
   { week: 1, homeTeam: 'Team Wood', awayTeam: 'Team Ross', homeScore: 15, awayScore: 33 },
@@ -126,6 +126,11 @@ export const LEAGUE_RESULTS_WEEKS_1_TO_4 = [
   { week: 4, homeTeam: 'Team Smergut', awayTeam: 'Team Pearce', homeScore: 37, awayScore: 8 },
   { week: 4, homeTeam: 'Team Reed', awayTeam: 'Team Wood', homeScore: 25, awayScore: 10 },
   { week: 4, homeTeam: 'Team Oliver', awayTeam: 'Team Ross', homeScore: 53, awayScore: 17 },
+
+  { week: 5, homeTeam: 'Team Reed', awayTeam: 'Team Reza', homeScore: 5, awayScore: 50 },
+  { week: 5, homeTeam: 'Team Pearce', awayTeam: 'Team Oliver', homeScore: 7, awayScore: 40 },
+  { week: 5, homeTeam: 'Team Ross', awayTeam: 'Team Brown', homeScore: 39, awayScore: 18 },
+  { week: 5, homeTeam: 'Team Wood', awayTeam: 'Team Smergut', homeScore: 31, awayScore: 30 },
 ];
 
 export const INITIAL_FOCUS = getAutomatedFocus();

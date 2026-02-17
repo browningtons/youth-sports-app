@@ -57,6 +57,9 @@ export const buildSeasonInsights = (results, teamName = 'Team Brown') => {
 
   const teamStatsMap = buildTeamStatsMap(results);
   const teams = Array.from(teamStatsMap.keys());
+  const weeks = results.map((game) => game.week).filter((week) => Number.isFinite(week));
+  const minWeek = weeks.length ? Math.min(...weeks) : null;
+  const maxWeek = weeks.length ? Math.max(...weeks) : null;
 
   const totalGames = results.length;
   const totalPoints = results.reduce((sum, game) => sum + game.homeScore + game.awayScore, 0);
@@ -151,6 +154,7 @@ export const buildSeasonInsights = (results, teamName = 'Team Brown') => {
 
   return {
     gamesAnalyzed: totalGames,
+    weekRange: { start: minWeek, end: maxWeek },
     avgTotalPoints: roundTo1Decimal(totalPoints / totalGames),
     avgMargin: roundTo1Decimal(totalMargin / totalGames),
     closeGames,
