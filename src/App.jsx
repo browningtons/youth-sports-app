@@ -3,12 +3,14 @@ import './App.css';
 import Header from './components/Header';
 import RosterSection from './components/RosterSection';
 import ScheduleSection from './components/ScheduleSection';
+import SeasonInsights from './components/SeasonInsights';
 import StandingsSection from './components/StandingsSection';
 import WeeklyFocus from './components/WeeklyFocus';
 import {
   INITIAL_ROSTER,
   INITIAL_SCHEDULE,
   INITIAL_TEAM_DATA,
+  LEAGUE_RESULTS_WEEKS_1_TO_4,
   STANDINGS_DATA,
 } from './data/constants';
 import { calculateRecord, hydrateSchedule } from './lib/schedule';
@@ -42,6 +44,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 gap-6">
             <StandingsSection standings={STANDINGS_DATA} teamName={teamData.name} />
+            <SeasonInsights results={LEAGUE_RESULTS_WEEKS_1_TO_4} teamName={teamData.name} />
             <RosterSection players={roster} />
           </div>
 
