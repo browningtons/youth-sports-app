@@ -27,7 +27,7 @@ export const INITIAL_TEAM_DATA = {
   name: 'Team Brown',
   league: '2026 Ogden Jr Jazz League',
   season: 'Winter 2026',
-  record: { w: 1, l: 4 },
+  record: { w: 2, l: 4 },
   primaryColor: 'bg-jazz-purple-700',
   secondaryColor: 'bg-jazz-purple-50',
 };
@@ -78,7 +78,7 @@ export const INITIAL_SCHEDULE = [
     oppScore: 41,
   },
   { id: 5, date: 'Sat, Feb 14', time: '12:00 PM', opponent: 'Team Ross', location: 'Highland Junior High', isHome: false, result: 'L', teamScore: 18, oppScore: 39 },
-  { id: 6, date: 'Sat, Feb 21', time: '12:00 PM', opponent: 'Team Smergut', location: 'James Madison', isHome: true, result: null, teamScore: null, oppScore: null },
+  { id: 6, date: 'Sat, Feb 21', time: '12:00 PM', opponent: 'Team Smergut', location: 'James Madison', isHome: true, result: 'W', teamScore: 38, oppScore: 20 },
   { id: 7, date: 'Sat, Feb 28', time: '12:00 PM', opponent: 'Team Pearce', location: 'Highland Junior High', isHome: false, result: null, teamScore: null, oppScore: null },
   { id: 8, date: 'Sat, Mar 7', time: '12:00 PM', opponent: 'Team Reed', location: 'James Madison', isHome: true, result: null, teamScore: null, oppScore: null },
 ];
@@ -96,17 +96,17 @@ export const INITIAL_ROSTER = [
 ];
 
 export const STANDINGS_DATA = [
-  { rank: 1, name: 'Team Oliver', w: 5, l: 0, pct: '1.000' },
-  { rank: 2, name: 'Team Reza', w: 4, l: 1, pct: '.800' },
-  { rank: 3, name: 'Team Reed', w: 4, l: 1, pct: '.800' },
-  { rank: 4, name: 'Team Ross', w: 3, l: 2, pct: '.600' },
-  { rank: 5, name: 'Team Wood', w: 2, l: 3, pct: '.400' },
-  { rank: 6, name: 'Team Brown', w: 1, l: 4, pct: '.200' },
-  { rank: 7, name: 'Team Smergut', w: 1, l: 4, pct: '.200' },
-  { rank: 8, name: 'Team Pearce', w: 0, l: 5, pct: '.000' },
+  { rank: 1, name: 'Team Oliver', w: 6, l: 0, pct: '1.000' },
+  { rank: 2, name: 'Team Reza', w: 5, l: 1, pct: '.833' },
+  { rank: 3, name: 'Team Reed', w: 5, l: 1, pct: '.833' },
+  { rank: 4, name: 'Team Ross', w: 3, l: 3, pct: '.500' },
+  { rank: 5, name: 'Team Brown', w: 2, l: 4, pct: '.333' },
+  { rank: 6, name: 'Team Wood', w: 2, l: 4, pct: '.333' },
+  { rank: 7, name: 'Team Smergut', w: 1, l: 5, pct: '.167' },
+  { rank: 8, name: 'Team Pearce', w: 0, l: 6, pct: '.000' },
 ];
 
-export const LEAGUE_RESULTS_WEEKS_1_TO_5 = [
+export const LEAGUE_RESULTS_WEEKS_1_TO_6 = [
   { week: 1, homeTeam: 'Team Smergut', awayTeam: 'Team Oliver', homeScore: 14, awayScore: 55 },
   { week: 1, homeTeam: 'Team Reed', awayTeam: 'Team Brown', homeScore: 27, awayScore: 23 },
   { week: 1, homeTeam: 'Team Wood', awayTeam: 'Team Ross', homeScore: 15, awayScore: 33 },
@@ -131,6 +131,11 @@ export const LEAGUE_RESULTS_WEEKS_1_TO_5 = [
   { week: 5, homeTeam: 'Team Pearce', awayTeam: 'Team Oliver', homeScore: 7, awayScore: 40 },
   { week: 5, homeTeam: 'Team Ross', awayTeam: 'Team Brown', homeScore: 39, awayScore: 18 },
   { week: 5, homeTeam: 'Team Wood', awayTeam: 'Team Smergut', homeScore: 31, awayScore: 30 },
+
+  { week: 6, homeTeam: 'Team Oliver', awayTeam: 'Team Wood', homeScore: 55, awayScore: 7 },
+  { week: 6, homeTeam: 'Team Reza', awayTeam: 'Team Ross', homeScore: 35, awayScore: 21 },
+  { week: 6, homeTeam: 'Team Pearce', awayTeam: 'Team Reed', homeScore: 1, awayScore: 24 },
+  { week: 6, homeTeam: 'Team Brown', awayTeam: 'Team Smergut', homeScore: 38, awayScore: 20 },
 ];
 
 export const INITIAL_FOCUS = getAutomatedFocus();

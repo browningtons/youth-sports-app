@@ -10,7 +10,7 @@ import {
   INITIAL_ROSTER,
   INITIAL_SCHEDULE,
   INITIAL_TEAM_DATA,
-  LEAGUE_RESULTS_WEEKS_1_TO_5,
+  LEAGUE_RESULTS_WEEKS_1_TO_6,
   STANDINGS_DATA,
 } from './data/constants';
 import { calculateRecord, hydrateSchedule } from './lib/schedule';
@@ -44,7 +44,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 gap-6">
             <StandingsSection standings={STANDINGS_DATA} teamName={teamData.name} />
-            <SeasonInsights results={LEAGUE_RESULTS_WEEKS_1_TO_5} teamName={teamData.name} />
+            <SeasonInsights results={LEAGUE_RESULTS_WEEKS_1_TO_6} teamName={teamData.name} />
             <RosterSection players={roster} />
           </div>
 
