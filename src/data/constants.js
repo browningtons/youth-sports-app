@@ -79,7 +79,7 @@ export const INITIAL_SCHEDULE = [
   },
   { id: 5, date: 'Sat, Feb 14', time: '12:00 PM', opponent: 'Team Ross', location: 'Highland Junior High', isHome: false, result: 'L', teamScore: 18, oppScore: 39 },
   { id: 6, date: 'Sat, Feb 21', time: '12:00 PM', opponent: 'Team Smergut', location: 'James Madison', isHome: true, result: 'W', teamScore: 38, oppScore: 20 },
-  { id: 7, date: 'Sat, Feb 28', time: '12:00 PM', opponent: 'Team Pearce', location: 'Highland Junior High', isHome: false, result: null, teamScore: null, oppScore: null },
+  { id: 7, date: 'Sat, Feb 28', time: '1:00 PM', opponent: 'Team Pearce', location: 'Mount Ogden Junior High', isHome: false, result: null, teamScore: null, oppScore: null },
   { id: 8, date: 'Sat, Mar 7', time: '12:00 PM', opponent: 'Team Reed', location: 'James Madison', isHome: true, result: null, teamScore: null, oppScore: null },
 ];
 
